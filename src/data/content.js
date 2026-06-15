@@ -34,12 +34,16 @@ export const principles = [
 
 export const skills = [
   { group: 'Cloud', items: ['Microsoft Azure (primary)', 'AWS'] },
-  { group: 'AI / MLOps', items: ['RAG pipelines', 'LLM deployment', 'LangChain', 'ChromaDB', 'Azure ML', 'Prompt engineering'] },
+  { group: 'AI / MLOps', items: ['RAG pipelines', 'LLM deployment', 'LangChain', 'Ollama', 'Embeddings & vector search', 'Prompt engineering', 'Gradio', 'Azure ML'] },
   { group: 'Infrastructure as Code', items: ['Terraform', 'ARM templates', 'Ansible'] },
   { group: 'Containers & Orchestration', items: ['Docker', 'Docker Compose', 'Kubernetes (AKS)', 'Helm'] },
-  { group: 'CI/CD', items: ['Azure DevOps', 'GitHub Actions'] },
-  { group: 'Security & IAM', items: ['RBAC', 'SSO / SAML', 'Authelia', 'LLDAP', 'Microsoft Entra ID', 'Azure Key Vault', 'UFW', 'Fail2ban'] },
-  { group: 'Languages', items: ['Python', 'Bash', 'PowerShell', 'HCL', 'SQL'] },
+  { group: 'CI/CD', items: ['Azure DevOps', 'GitHub Actions', 'Jenkins'] },
+  { group: 'Security & IAM', items: ['SSO / SAML', 'Microsoft Entra ID', 'Azure Key Vault', 'RBAC', 'Authelia', 'LLDAP', 'UFW', 'Fail2ban'] },
+  { group: 'Linux & Self-Hosting', items: ['Linux', 'Caddy', 'Cloudflare', 'Tailscale', 'Nextcloud', 'Automated backups'] },
+  { group: 'Monitoring', items: ['Azure Monitor', 'Application Insights', 'Alerting', 'Anomaly detection'] },
+  { group: 'Databases', items: ['SQLite', 'ChromaDB', 'Qdrant', 'Knowledge graphs'] },
+  { group: 'Web / Frontend', items: ['React', 'Vite', 'Tailwind CSS', 'JavaScript'] },
+  { group: 'Languages', items: ['Python (Flask)', 'Bash', 'PowerShell', 'HCL', 'SQL'] },
 ]
 
 export const experience = [
