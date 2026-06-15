@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme tokens (R G B triples for Tailwind alpha support). */
+:root {
+  --paper: 255 255 255;
+  --surface: 255 255 255;
+  --muted: 247 248 250;
+  --line: 229 229 229;
+  --ink: 10 10 10;
+  --ink-soft: 82 82 82;
+  --ink-faint: 107 114 128;
+  --accent: 15 98 254;       /* IBM blue (light) */
+  --accent-contrast: 255 255 255;
+}
+.dark {
+  --paper: 11 15 23;
+  --surface: 18 24 38;
+  --muted: 15 21 33;
+  --line: 30 41 59;
+  --ink: 226 232 240;
+  --ink-soft: 148 163 184;
+  --ink-faint: 100 116 139;
+  --accent: 56 189 248;      /* cyan (dark) */
+  --accent-contrast: 11 15 23;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-paper text-ink font-sans antialiased; }
+  /* Subtle technical dot-grid, dark mode only. */
+  .dark body {
+    background-image: radial-gradient(rgb(148 163 184 / 0.10) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  ::selection { background: rgb(var(--accent) / 0.25); }
+  :focus-visible { @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper; }
+}
+
+@layer components {
+  .lbl { @apply font-mono text-[11px] uppercase tracking-label text-ink-faint; }
+  .btn { @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium transition; }
+  .btn-primary { @apply btn bg-ink text-paper hover:opacity-90; }
+  .btn-outline { @apply btn rounded-md border border-line text-ink hover:border-ink; }
+  .btn-ghost { @apply btn border-b border-ink pb-0.5 hover:text-ink-soft; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
