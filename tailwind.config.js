@@ -1,3 +1,5 @@
+import typography from '@tailwindcss/typography'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: 'class',
@@ -28,5 +30,5 @@ export default {
       letterSpacing: { label: '0.12em' },
     },
   },
-  plugins: [],
+  plugins: [typography],
 }

@@ -5,10 +5,12 @@ import { profile } from '../data/content'
 import ThemeToggle from './ThemeToggle'
 
 const links = [
+  { to: '/', label: 'Home' },
   { to: '/about', label: 'About' },
   { to: '/experience', label: 'Experience' },
   { to: '/projects', label: 'Projects' },
   { to: '/certifications', label: 'Certifications' },
+  // { to: '/writing', label: 'Writing' },  // hidden for now — page lives at /#/writing; re-enable when ready
 ]
 
 const iconBtn = 'grid h-9 w-9 place-items-center rounded-md border border-line text-ink-soft transition hover:border-accent/50 hover:text-ink'
@@ -48,6 +50,7 @@ export default function Nav() {
               <NavLink
                 key={l.to}
                 to={l.to}
+                end={l.to === '/'}
                 className={({ isActive }) =>
                   `text-sm font-medium transition ${
                     isActive ? 'border-b-2 border-ink pb-0.5 text-ink' : 'text-ink-soft hover:text-ink'
@@ -80,6 +83,7 @@ export default function Nav() {
               <NavLink
                 key={l.to}
                 to={l.to}
+                end={l.to === '/'}
                 onClick={() => setOpen(false)}
                 className="border-b border-line py-3 text-sm font-medium text-ink-soft last:border-0 hover:text-ink"
               >
