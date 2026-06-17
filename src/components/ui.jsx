@@ -38,8 +38,9 @@ export function Reveal({ children, delay = 0, className = '' }) {
 }
 
 // ---- Buttons ----
-export function Button({ children, to, href, variant = 'primary', ...rest }) {
-  const cls = variant === 'primary' ? 'btn-primary' : variant === 'outline' ? 'btn-outline' : 'btn-ghost'
+export function Button({ children, to, href, variant = 'primary', size, ...rest }) {
+  let cls = variant === 'primary' ? 'btn-primary' : variant === 'outline' ? 'btn-outline' : 'btn-ghost'
+  if (size === 'sm') cls += ' btn-sm'
   if (to) return <Link to={to} className={cls} {...rest}>{children}</Link>
   if (href) return <a href={href} className={cls} {...rest}>{children}</a>
   return <button className={cls} {...rest}>{children}</button>

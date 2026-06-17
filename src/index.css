@@ -44,6 +44,7 @@
   .btn-primary { @apply btn bg-ink text-paper hover:opacity-90; }
   .btn-outline { @apply btn rounded-md border border-line text-ink hover:border-ink; }
   .btn-ghost { @apply btn border-b border-ink pb-0.5 hover:text-ink-soft; }
+  .btn-sm { @apply gap-1.5 px-4 py-2 text-[13px]; }
 }
 
 @media (prefers-reduced-motion: reduce) {

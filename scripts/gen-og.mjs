@@ -33,7 +33,7 @@ const cards = [
   {
     slug: 'og-portfolio',
     kicker: 'Portfolio',
-    title: 'Taha Siddiqi',
+    title: 'Taha Nasir Siddiqi',
     sub: 'Cloud & Systems Engineer',
     tags: ['Azure & AWS', 'IaC', 'Kubernetes', 'Linux'],
     url: 'siddiqitaha.github.io',

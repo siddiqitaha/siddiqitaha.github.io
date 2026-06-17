@@ -19,6 +19,7 @@ export default function About() {
         </div>
 
         <aside className="md:col-span-4 md:border-l md:border-line md:pl-8">
+          <img src="/avatar.jpg" alt="Taha Nasir Siddiqi" className="mb-7 h-44 w-44 rounded-xl border border-line object-cover" />
           <p className="lbl">How I work</p>
           <dl className="mt-4 divide-y divide-line">
             {principles.map((p) => (

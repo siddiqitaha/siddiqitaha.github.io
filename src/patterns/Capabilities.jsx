@@ -257,7 +257,7 @@ export function CapListDropdown({ skills }) {
       return next
     })
   return (
-    <div className="divide-y divide-line border-y border-line">
+    <div className="divide-y divide-line border-b border-line">
       {skills.map((s, i) => {
         const isOpen = open.has(i)
         return (

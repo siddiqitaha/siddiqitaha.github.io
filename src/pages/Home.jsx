@@ -18,12 +18,7 @@ export default function Home() {
           <div className="space-y-16 md:col-span-8 md:order-1">
             {/* Profile */}
             <div>
-              {profile.openToWork && (
-                <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
-                  <span className="h-2 w-2 rounded-full bg-accent" /> Open to new roles
-                </span>
-              )}
-              <h1 className="mt-5 font-head text-3xl font-semibold leading-[1.12] tracking-tight md:text-4xl">
+              <h1 className="font-head text-3xl font-semibold leading-[1.12] tracking-tight md:text-4xl">
                 Cloud &amp; Systems Engineer building<br />
                 <span className="text-accent">secure infrastructure and production AI.</span>
               </h1>
@@ -33,16 +28,16 @@ export default function Home() {
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {certBadges.map((c) => (
-                  <span key={c} className="rounded-full border border-line px-3 py-1 text-xs font-medium text-ink-soft">{c}</span>
+                  <span key={c} className="rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-ink-soft">{c}</span>
                 ))}
               </div>
-              <div className="mt-7 flex flex-wrap items-center gap-3">
-                <Button to="/projects">View projects <ArrowRight size={16} /></Button>
-                <Button href={profile.github} variant="outline" target="_blank" rel="noreferrer"><Github size={16} /> GitHub</Button>
+              <div className="mt-7 flex flex-wrap items-center gap-2.5">
+                <Button to="/projects" size="sm">View projects <ArrowRight size={14} /></Button>
+                <Button href={profile.github} variant="outline" size="sm" target="_blank" rel="noreferrer"><Github size={14} /> GitHub</Button>
                 {profile.linkedin && (
-                  <Button href={profile.linkedin} variant="outline" target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</Button>
+                  <Button href={profile.linkedin} variant="outline" size="sm" target="_blank" rel="noreferrer"><Linkedin size={14} /> LinkedIn</Button>
                 )}
-                <Button href={profile.resumeUrl} variant="ghost">Download résumé ↓</Button>
+                <Button href={profile.resumeUrl} variant="outline" size="sm">Download résumé <span className="text-ink-faint">↓</span></Button>
               </div>
             </div>
 
@@ -56,13 +51,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* right rail — TS monogram on top of Capabilities */}
-          <div className="md:col-span-4 md:order-2">
+          {/* right rail — photo on top of Capabilities */}
+          <div className="md:col-span-4 md:order-2 md:border-l md:border-line md:pl-10">
             <Reveal>
-              <div className="mb-8 flex justify-center">
-                <div className="grid h-28 w-28 place-items-center rounded-2xl bg-accent text-accent-contrast md:h-32 md:w-32">
-                  <span className="font-head text-4xl font-semibold tracking-tight">TS</span>
-                </div>
+              <div className="mb-8 flex">
+                <img src="/avatar.jpg" alt="Taha Nasir Siddiqi" className="h-40 w-40 rounded-xl border border-line object-cover md:h-44 md:w-44" />
               </div>
               <SectionHead title="Capabilities" />
               <div className="pt-5"><Capabilities skills={skills} /></div>

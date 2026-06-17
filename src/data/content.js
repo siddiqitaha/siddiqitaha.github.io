@@ -2,7 +2,7 @@
 import pinned from './pinned.json'
 
 export const profile = {
-  name: 'Taha Siddiqi',
+  name: 'Taha Nasir Siddiqi',
   title: 'Cloud & Systems Engineer',
   tagline: 'I build secure, self-hosted cloud & AI systems.',
   blurb:

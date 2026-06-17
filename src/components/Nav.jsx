@@ -31,7 +31,14 @@ export default function Nav() {
     <header className="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur">
       <nav className="mx-auto flex max-w-content items-center justify-between px-6 py-4">
         <Link to="/" className="leading-tight">
-          <div className="font-semibold tracking-tight">Taha Siddiqi</div>
+          <div className="flex items-center gap-2.5">
+            <span className="font-semibold tracking-tight">Taha Nasir Siddiqi</span>
+            {profile.openToWork && (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-2 py-0.5 text-[10px] font-medium text-accent">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" /> Open to roles
+              </span>
+            )}
+          </div>
           <div className="lbl mt-0.5">Cloud &amp; Systems Engineer</div>
         </Link>
 
