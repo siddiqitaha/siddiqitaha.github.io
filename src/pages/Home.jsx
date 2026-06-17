@@ -60,8 +60,8 @@ export default function Home() {
           <div className="md:col-span-4 md:order-2">
             <Reveal>
               <div className="mb-8 flex justify-center">
-                <div className="grid h-36 w-36 place-items-center rounded-2xl bg-accent text-accent-contrast md:h-40 md:w-40">
-                  <span className="font-head text-5xl font-semibold tracking-tight">TS</span>
+                <div className="grid h-28 w-28 place-items-center rounded-2xl bg-accent text-accent-contrast md:h-32 md:w-32">
+                  <span className="font-head text-4xl font-semibold tracking-tight">TS</span>
                 </div>
               </div>
               <SectionHead title="Capabilities" />
