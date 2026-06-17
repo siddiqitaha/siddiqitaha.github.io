@@ -30,16 +30,6 @@ const clip = (s, n) => (s && s.length > n ? s.slice(0, n - 1).trimEnd() + '…' 
 const pinned = JSON.parse(readFileSync(resolve(__dirname, '../src/data/pinned.json'), 'utf8'))
 
 const cards = [
-  {
-    slug: 'og-portfolio',
-    kicker: 'Portfolio',
-    title: 'Taha Nasir Siddiqi',
-    sub: 'Cloud & Systems Engineer',
-    tags: ['Azure & AWS', 'IaC', 'Kubernetes', 'Linux'],
-    url: 'siddiqitaha.github.io',
-    plain: false,
-    ts: 84,
-  },
   ...pinned.map((r) => {
     const name = nameOverrides[r.name] || titleize(r.name)
     const tags = r.topics && r.topics.length ? r.topics.slice(0, 4) : r.language ? [r.language] : []
@@ -76,9 +66,16 @@ for (const c of cards) {
     await page.screenshot({ path: `${outDir}/${c.slug}-${theme}.png` })
   }
 }
+// Portfolio card: dedicated centered, photo template — crop-safe for LinkedIn's
+// Featured/profile previews (content stays in a central safe zone).
+await page.goto('file://' + resolve(__dirname, 'og-portfolio.html'))
+await page.evaluate(() => document.fonts.ready)
+await page.evaluate(() => Promise.all([...document.images].map((i) => (i.complete ? 1 : new Promise((r) => { i.onload = i.onerror = r })))))
+await page.screenshot({ path: `${outDir}/og-portfolio-light.png` })
+
 await browser.close()
 
-// Root og.png (social meta) = light portfolio card, matching the light-default site.
+// Root og.png (social meta) = the centered portfolio card.
 copyFileSync(`${outDir}/og-portfolio-light.png`, resolve(__dirname, '../public/og.png'))
 
-console.log(`Generated ${cards.length} cards x2 themes -> public/og-images/ (+ og.png)`)
+console.log(`Generated ${cards.length} project cards x2 themes + portfolio card -> public/og-images/ (+ og.png)`)
