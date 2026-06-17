@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Github, Linkedin, Mail } from 'lucide-react'
+import { profile } from '../data/content'
 import ThemeToggle from './ThemeToggle'
 
 const links = [
@@ -8,8 +9,21 @@ const links = [
   { to: '/experience', label: 'Experience' },
   { to: '/projects', label: 'Projects' },
   { to: '/certifications', label: 'Certifications' },
-  { to: '/contact', label: 'Contact' },
 ]
+
+const iconBtn = 'grid h-9 w-9 place-items-center rounded-md border border-line text-ink-soft transition hover:border-accent/50 hover:text-ink'
+
+function ContactIcons() {
+  return (
+    <>
+      <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub" className={iconBtn}><Github size={16} /></a>
+      {profile.linkedin && (
+        <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className={iconBtn}><Linkedin size={16} /></a>
+      )}
+      <a href={`mailto:${profile.email}`} aria-label="Email" className={iconBtn}><Mail size={16} /></a>
+    </>
+  )
+}
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
@@ -21,21 +35,27 @@ export default function Nav() {
           <div className="lbl mt-0.5">Cloud &amp; Systems Engineer</div>
         </Link>
 
-        <div className="hidden items-center gap-7 md:flex">
-          {links.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              className={({ isActive }) =>
-                `text-sm font-medium transition ${
-                  isActive ? 'border-b-2 border-ink pb-0.5 text-ink' : 'text-ink-soft hover:text-ink'
-                }`
-              }
-            >
-              {l.label}
-            </NavLink>
-          ))}
-          <ThemeToggle />
+        <div className="hidden items-center gap-6 md:flex">
+          <div className="flex items-center gap-7">
+            {links.map((l) => (
+              <NavLink
+                key={l.to}
+                to={l.to}
+                className={({ isActive }) =>
+                  `text-sm font-medium transition ${
+                    isActive ? 'border-b-2 border-ink pb-0.5 text-ink' : 'text-ink-soft hover:text-ink'
+                  }`
+                }
+              >
+                {l.label}
+              </NavLink>
+            ))}
+          </div>
+          <span className="h-5 w-px bg-line" />
+          <div className="flex items-center gap-2">
+            <ContactIcons />
+            <ThemeToggle />
+          </div>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
@@ -59,6 +79,9 @@ export default function Nav() {
                 {l.label}
               </NavLink>
             ))}
+            <div className="flex items-center gap-2 py-3">
+              <ContactIcons />
+            </div>
           </div>
         </div>
       )}

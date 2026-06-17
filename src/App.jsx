@@ -8,7 +8,6 @@ import About from './pages/About'
 import Experience from './pages/Experience'
 import Projects from './pages/Projects'
 import Certifications from './pages/Certifications'
-import Contact from './pages/Contact'
 import Lab from './pages/Lab'
 import CapLab from './pages/CapLab'
 
@@ -45,7 +44,6 @@ export default function App() {
             <Route path="/experience" element={<Page><Experience /></Page>} />
             <Route path="/projects" element={<Page><Projects /></Page>} />
             <Route path="/certifications" element={<Page><Certifications /></Page>} />
-            <Route path="/contact" element={<Page><Contact /></Page>} />
             <Route path="/lab" element={<Page><Lab /></Page>} />
             <Route path="/caplab" element={<Page><CapLab /></Page>} />
           </Routes>

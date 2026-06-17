@@ -23,13 +23,13 @@ export default function Home() {
                   <span className="h-2 w-2 rounded-full bg-accent" /> Open to new roles
                 </span>
               )}
-              <h1 className="mt-5 font-head text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl">
-                I build secure, <span className="whitespace-nowrap">self-hosted</span><br />
-                <span className="text-accent">cloud &amp; AI systems.</span>
+              <h1 className="mt-5 font-head text-3xl font-semibold leading-[1.12] tracking-tight md:text-4xl">
+                Cloud &amp; Systems Engineer building<br />
+                <span className="text-accent">secure infrastructure and production AI.</span>
               </h1>
               <p className="mt-5 max-w-lg text-lg leading-relaxed text-ink-soft">
-                Cloud &amp; Systems Engineer with 5+ years across Azure and AWS, working in
-                infrastructure as code, Kubernetes, and production RAG pipelines. Based in {profile.location}.
+                5+ years across Azure and AWS, working in infrastructure as code, Kubernetes,
+                and RAG pipelines. Based in {profile.location}.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {certBadges.map((c) => (
@@ -77,7 +77,7 @@ export default function Home() {
           <Reveal>
             <h2 className="font-head text-3xl font-semibold tracking-tight">Let's build something solid.</h2>
             <p className="mt-3 max-w-md text-ink-soft">Have something you're building? I'd like to hear about it.</p>
-            <div className="mt-7"><Button to="/contact">Get in touch <ArrowRight size={16} /></Button></div>
+            <div className="mt-7"><Button href={`mailto:${profile.email}`}>Get in touch <ArrowRight size={16} /></Button></div>
           </Reveal>
         </div>
       </Section>

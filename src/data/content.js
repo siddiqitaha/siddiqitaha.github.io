@@ -12,7 +12,7 @@ export const profile = {
   openToWork: true,
   email: 'siddiqitaha1@gmail.com',
   github: 'https://github.com/siddiqitaha',
-  linkedin: '', // add your LinkedIn URL
+  linkedin: 'https://linkedin.com/in/siddiqitaha',
   resumeUrl: '/resume.pdf', // drop your résumé PDF in /public as resume.pdf
 }
 
@@ -27,9 +27,9 @@ export const bio = [
 ]
 
 export const principles = [
-  { t: 'Secure by default', d: 'IAM, least privilege, and intrusion detection designed in from the start — not bolted on after.' },
-  { t: "Reproducible or it didn't happen", d: 'Infrastructure-as-code and validated runbooks over hand-built, snowflake servers.' },
-  { t: 'Automate, then trust', d: 'Backups, deploys, and recovery are tested procedures — not last-minute heroics.' },
+  { t: 'Own the outcome', d: 'I take responsibility for the whole result, not just my slice: the late-night fix and the doc that stops it happening again.' },
+  { t: 'Explain it simply', d: 'I translate technical trade-offs into plain language, so non-engineers can make good decisions with me.' },
+  { t: 'Document for the next person', d: "I write things down as I build, so the team (or future me) isn't stuck reverse-engineering my choices." },
 ]
 
 export const skills = [
@@ -226,7 +226,7 @@ export const education = [
     school: 'University of Aberdeen',
     detail: 'BSc Business Management & Information Systems',
     period: 'Sep 2020 – Jun 2024',
-    note: 'Campus Committee Chairman — led a 19-member committee, organized career fairs, co-authored student bylaws.',
+    note: 'Campus Committee Chairman: led a 19-member committee, organized career fairs, co-authored student bylaws.',
   },
   {
     school: 'Elev8 Future Digital Leaders — Microsoft Qatar',
