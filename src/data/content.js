@@ -3,7 +3,7 @@ import pinned from './pinned.json'
 
 export const profile = {
   name: 'Taha Siddiqi',
-  title: 'Technical Solutions Architect',
+  title: 'Cloud Engineer',
   tagline: 'I build secure, self-hosted cloud & AI systems.',
   blurb:
     'From infrastructure-as-code and Kubernetes to production RAG pipelines — I turn messy, manual operations into clean, automated, well-documented systems.',
@@ -23,7 +23,7 @@ export const certBadges = ['AZ-303 Azure Architect', 'KCNA Kubernetes', 'AZ-900'
 export const bio = [
   'I came to cloud architecture through information systems and a lot of hands-on operations — which is why I gravitate to owning the entire stack, from the network and identity layer up to the model behind an app.',
   "At Mannai, Qatar's leading Microsoft Platinum Partner, I migrated enterprise applications to Azure and built MLOps pipelines for clients. Today, at ZIACO, I architect and run a self-hosted private cloud end to end — identity, SSO, intrusion detection, and an AI monitoring pipeline.",
-  "Most of my side projects exist because I wanted that same level of control over my own tools. I'm a Canadian citizen based in Doha, looking for a team where I can own cloud and platform architecture — and bring AI into production responsibly.",
+  "Most of my side projects exist because I wanted that same level of control over my own tools. I'm a Canadian citizen based in Doha — open to Cloud, Solutions, and Systems roles in Canada and the Gulf, remote or relocation.",
 ]
 
 export const principles = [
@@ -48,7 +48,7 @@ export const skills = [
 
 export const experience = [
   {
-    role: 'Technical Solutions Architect',
+    role: 'Cloud & Infrastructure Engineer',
     company: 'ZIACO Industries Limited',
     location: 'Remote',
     period: 'Nov 2024 – Present',

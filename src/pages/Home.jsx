@@ -25,7 +25,7 @@ export default function Home() {
               <span className="text-accent">cloud &amp; AI systems.</span>
             </h1>
             <p className="mt-5 max-w-lg text-lg leading-relaxed text-ink-soft">
-              Technical Solutions Architect with 5+ years across Azure &amp; AWS — infrastructure-as-code,
+              Cloud Engineer with 5+ years across Azure &amp; AWS — infrastructure-as-code,
               Kubernetes, and production RAG pipelines. Based in {profile.location}.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
