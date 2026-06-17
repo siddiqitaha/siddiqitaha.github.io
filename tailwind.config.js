@@ -24,7 +24,7 @@ export default {
           contrast: 'rgb(var(--accent-contrast) / <alpha-value>)',
         },
       },
-      maxWidth: { content: '64rem' },
+      maxWidth: { content: '72rem' },
       letterSpacing: { label: '0.12em' },
     },
   },

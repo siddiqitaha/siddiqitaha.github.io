@@ -82,9 +82,33 @@ export function WorkStackedCards({ projects }) {
   )
 }
 
+// Two-up grid — compact cards, exactly two per row. For a balanced split layout.
+export function WorkGrid2({ projects }) {
+  return (
+    <div className="grid gap-4 sm:grid-cols-2">
+      {projects.map((p) => (
+        <Link key={p.slug} to={`/projects#${p.slug}`}
+          className="group flex flex-col rounded-lg border border-line p-5 transition hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-sm">
+          <div className="flex items-start justify-between gap-2">
+            <h3 className="font-semibold leading-snug">{p.name}</h3>
+            <span className="font-mono text-xs text-ink-faint group-hover:text-accent">→</span>
+          </div>
+          <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">{p.tagline}</p>
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {p.stack.slice(0, 3).map((t) => (
+              <span key={t} className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px] text-ink-soft">{t}</span>
+            ))}
+          </div>
+        </Link>
+      ))}
+    </div>
+  )
+}
+
 export const WORK_VARIANTS = [
   { key: 'indexed', label: 'Indexed table', Comp: WorkIndexed },
   { key: 'cards', label: 'Cards (grid)', Comp: WorkCards },
   { key: 'stacked-cards', label: 'Stacked cards (wide column)', Comp: WorkStackedCards },
+  { key: 'grid2', label: 'Two-up grid', Comp: WorkGrid2 },
   { key: 'minimal', label: 'Minimal list', Comp: WorkMinimal },
 ]
