@@ -18,7 +18,7 @@ export default function Nav() {
       <nav className="mx-auto flex max-w-content items-center justify-between px-6 py-4">
         <Link to="/" className="leading-tight">
           <div className="font-semibold tracking-tight">Taha Siddiqi</div>
-          <div className="lbl mt-0.5">Cloud Engineer</div>
+          <div className="lbl mt-0.5">Cloud &amp; Systems Engineer</div>
         </Link>
 
         <div className="hidden items-center gap-7 md:flex">

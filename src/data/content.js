@@ -3,7 +3,7 @@ import pinned from './pinned.json'
 
 export const profile = {
   name: 'Taha Siddiqi',
-  title: 'Cloud Engineer',
+  title: 'Cloud & Systems Engineer',
   tagline: 'I build secure, self-hosted cloud & AI systems.',
   blurb:
     'From infrastructure-as-code and Kubernetes to production RAG pipelines — I turn messy, manual operations into clean, automated, well-documented systems.',
