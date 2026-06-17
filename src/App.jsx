@@ -10,6 +10,7 @@ import Projects from './pages/Projects'
 import Certifications from './pages/Certifications'
 import Contact from './pages/Contact'
 import Lab from './pages/Lab'
+import CapLab from './pages/CapLab'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -46,6 +47,7 @@ export default function App() {
             <Route path="/certifications" element={<Page><Certifications /></Page>} />
             <Route path="/contact" element={<Page><Contact /></Page>} />
             <Route path="/lab" element={<Page><Lab /></Page>} />
+            <Route path="/caplab" element={<Page><CapLab /></Page>} />
           </Routes>
         </AnimatePresence>
       </div>

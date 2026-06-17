@@ -6,7 +6,7 @@ export default function Certifications() {
   return (
     <Section className="py-14">
       <Reveal>
-        <p className="lbl">01 / Certifications</p>
+        <p className="lbl">Certifications</p>
         <h1 className="mt-5 font-head text-4xl font-semibold tracking-tight md:text-5xl">
           Verified credentials.
         </h1>

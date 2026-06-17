@@ -11,7 +11,7 @@ export default function About() {
   return (
     <Section className="py-14">
       <Reveal>
-        <p className="lbl">01 / About</p>
+        <p className="lbl">About</p>
         <h1 className="mt-5 max-w-2xl font-head text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
           I like owning the whole stack.
         </h1>
@@ -57,7 +57,7 @@ export default function About() {
       </div>
 
       <div className="mt-14">
-        <Reveal><SectionHead number="02" title="Education" /></Reveal>
+        <Reveal><SectionHead title="Education" /></Reveal>
         <div className="divide-y divide-line">
           {education.map((e, i) => (
             <Reveal key={e.school} delay={i * 0.05}>

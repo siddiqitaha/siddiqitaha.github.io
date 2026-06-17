@@ -20,14 +20,18 @@ export function CertTable({ certifications }) {
   )
 }
 
-// Cards — grid with a check-badge icon.
+// Cards — grid with the issuer's official logo (falls back to a check badge).
 export function CertCards({ certifications }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       {certifications.map((c) => (
         <div key={c.name} className="flex items-start gap-4 rounded-lg border border-line p-5">
-          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-accent text-accent-contrast">
-            <BadgeCheck size={18} />
+          <div className="grid h-11 w-11 shrink-0 place-items-center rounded-md border border-line bg-white p-1.5">
+            {c.logo ? (
+              <img src={`/logos/${c.logo}.svg`} alt={`${c.issuer} logo`} className="h-full w-full object-contain" />
+            ) : (
+              <BadgeCheck size={18} className="text-accent" />
+            )}
           </div>
           <div>
             <h3 className="font-semibold leading-snug">{c.name}</h3>

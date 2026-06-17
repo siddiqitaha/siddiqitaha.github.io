@@ -140,8 +140,159 @@ export function CapAccordion({ skills }) {
   )
 }
 
+// ── Rail-optimized, cleaner options (designed for the narrow side column) ──────
+
+// A — Minimal: airy label + comma list, no borders. Calmest possible.
+export function CapMinimal({ skills }) {
+  return (
+    <div className="space-y-5">
+      {skills.map((s) => (
+        <div key={s.group}>
+          <p className="text-[13px] font-semibold">{s.group}</p>
+          <p className="mt-1 text-[13px] leading-relaxed text-ink-soft">{s.items.join(', ')}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// B — Chips: faint label + soft filled pills. Scannable, modern.
+export function CapChips({ skills }) {
+  return (
+    <div className="space-y-4">
+      {skills.map((s) => (
+        <div key={s.group}>
+          <p className="mb-1.5 text-[11px] font-medium uppercase tracking-wider text-ink-faint">{s.group}</p>
+          <div className="flex flex-wrap gap-1.5">
+            {s.items.map((it) => (
+              <span key={it} className="rounded-md bg-muted px-2 py-0.5 text-[12px] text-ink-soft">{it}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// C — Accent rail: a left border per category. Clean grouping, subtle hover.
+export function CapRail({ skills }) {
+  return (
+    <div className="space-y-4">
+      {skills.map((s) => (
+        <div key={s.group} className="border-l-2 border-line pl-3 transition hover:border-accent">
+          <p className="text-[13px] font-semibold">{s.group}</p>
+          <p className="mt-0.5 text-[13px] leading-relaxed text-ink-soft">{s.items.join(', ')}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// D — Numbered: editorial 01/02 index + category. Structured, distinctive.
+export function CapNumbered({ skills }) {
+  return (
+    <div className="space-y-3.5">
+      {skills.map((s, i) => (
+        <div key={s.group} className="flex gap-3">
+          <span className="pt-0.5 font-mono text-[11px] text-ink-faint">{String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <p className="text-[13px] font-semibold">{s.group}</p>
+            <p className="text-[13px] leading-relaxed text-ink-soft">{s.items.join(', ')}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// E — Dot lead: small accent dot per category. Light, friendly.
+export function CapDotLead({ skills }) {
+  return (
+    <div className="space-y-3.5">
+      {skills.map((s) => (
+        <div key={s.group} className="flex gap-3">
+          <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+          <div>
+            <p className="text-[13px] font-semibold">{s.group}</p>
+            <p className="text-[13px] leading-relaxed text-ink-soft">{s.items.join(', ')}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// F — Primary + more: lead with the top areas, collapse the rest to one quiet line.
+export function CapPrimary({ skills }) {
+  const core = skills.slice(0, 5)
+  const rest = skills.slice(5)
+  return (
+    <div>
+      <div className="space-y-3.5">
+        {core.map((s) => (
+          <div key={s.group}>
+            <p className="text-[13px] font-semibold">{s.group}</p>
+            <p className="mt-0.5 text-[13px] leading-relaxed text-ink-soft">{s.items.join(', ')}</p>
+          </div>
+        ))}
+      </div>
+      {rest.length > 0 && (
+        <div className="mt-4 border-t border-line pt-3">
+          <p className="text-[11px] uppercase tracking-wider text-ink-faint">Also</p>
+          <p className="mt-1 text-[13px] leading-relaxed text-ink-soft">{rest.flatMap((s) => s.items).join(' · ')}</p>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// G — List dropdown: slim collapsible rows; each opens to a vertical list of
+// items on an accent rail. Lighter than the old accordion (no tool counters).
+export function CapListDropdown({ skills }) {
+  const [open, setOpen] = useState(() => new Set())
+  const toggle = (i) =>
+    setOpen((prev) => {
+      const next = new Set(prev)
+      next.has(i) ? next.delete(i) : next.add(i)
+      return next
+    })
+  return (
+    <div className="divide-y divide-line border-y border-line">
+      {skills.map((s, i) => {
+        const isOpen = open.has(i)
+        return (
+          <div key={s.group}>
+            <button
+              onClick={() => toggle(i)}
+              aria-expanded={isOpen}
+              className="flex w-full items-center justify-between gap-3 py-2.5 text-left text-[13px] font-medium transition hover:text-accent"
+            >
+              <span className={isOpen ? 'text-accent' : ''}>{s.group}</span>
+              <ChevronDown size={14} className={`shrink-0 transition ${isOpen ? 'rotate-180 text-accent' : 'text-ink-faint'}`} />
+            </button>
+            {isOpen && (
+              <ul className="mb-3 ml-0.5 space-y-1 border-l border-line pl-4 text-[13px] leading-relaxed text-ink-soft">
+                {s.items.map((it) => (
+                  <li key={it}>{it}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
 // Registry — used by /lab and by any page that wants to pick a variant by key.
 export const CAPABILITY_VARIANTS = [
+  { key: 'list-dropdown', label: 'G — List dropdown (slim)', Comp: CapListDropdown },
+  { key: 'minimal', label: 'A — Minimal (airy)', Comp: CapMinimal },
+  { key: 'chips', label: 'B — Soft chips', Comp: CapChips },
+  { key: 'rail', label: 'C — Accent rail', Comp: CapRail },
+  { key: 'numbered', label: 'D — Numbered index', Comp: CapNumbered },
+  { key: 'dot-lead', label: 'E — Dot lead', Comp: CapDotLead },
+  { key: 'primary', label: 'F — Primary + more', Comp: CapPrimary },
   { key: 'accordion', label: 'Accordion (expandable)', Comp: CapAccordion },
   { key: 'stacked', label: 'Stacked (narrow-friendly)', Comp: CapStacked },
   { key: 'cards', label: 'Option 1 — Card grid', Comp: CapCardGrid },

@@ -6,7 +6,7 @@ export default function Experience() {
   return (
     <Section className="py-14">
       <Reveal>
-        <p className="lbl">01 / Experience</p>
+        <p className="lbl">Experience</p>
         <h1 className="mt-5 font-head text-4xl font-semibold tracking-tight md:text-5xl">Where I've worked.</h1>
       </Reveal>
       <div className="mt-10"><ExpTwoCol experience={experience} /></div>

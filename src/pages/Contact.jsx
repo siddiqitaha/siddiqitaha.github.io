@@ -5,7 +5,7 @@ import { ContactSplit } from '../patterns/Contact'
 export default function Contact() {
   return (
     <Section className="py-14">
-      <Reveal><p className="lbl">01 / Contact</p></Reveal>
+      <Reveal><p className="lbl">Contact</p></Reveal>
       <div className="mt-6"><ContactSplit profile={profile} /></div>
     </Section>
   )

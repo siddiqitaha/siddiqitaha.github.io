@@ -215,10 +215,10 @@ const fromPinned = (pinned || []).map((r) => ({
 export const projects = fromPinned.length ? fromPinned : curatedProjects
 
 export const certifications = [
-  { name: 'AZ-303 — Azure Architect Technologies', issuer: 'Microsoft', year: '2021' },
-  { name: 'KCNA — Kubernetes & Cloud Native Associate', issuer: 'Linux Foundation', year: '2023' },
-  { name: 'AZ-900 — Azure Fundamentals', issuer: 'Microsoft', year: '2020' },
-  { name: 'Artificial Intelligence & Machine Learning', issuer: 'Samsung Innovation Campus', year: '2022' },
+  { name: 'AZ-303 · Azure Architect Technologies', issuer: 'Microsoft', year: '2021', logo: 'azure' },
+  { name: 'KCNA · Kubernetes & Cloud Native Associate', issuer: 'Linux Foundation', year: '2023', logo: 'kubernetes' },
+  { name: 'AZ-900 · Azure Fundamentals', issuer: 'Microsoft', year: '2020', logo: 'azure' },
+  { name: 'Artificial Intelligence & Machine Learning', issuer: 'Samsung Innovation Campus', year: '2022', logo: 'samsung' },
 ]
 
 export const education = [
