@@ -6,7 +6,7 @@ export const profile = {
   title: 'Cloud & Systems Engineer',
   tagline: 'I build secure, self-hosted cloud & AI systems.',
   blurb:
-    'From infrastructure-as-code and Kubernetes to production RAG pipelines — I turn messy, manual operations into clean, automated, well-documented systems.',
+    'I work across infrastructure as code, Kubernetes, and production AI pipelines, building systems that are secure, automated, and easy to rebuild.',
   location: 'Doha, Qatar',
   citizenship: 'Canadian Citizen',
   openToWork: true,
@@ -21,9 +21,9 @@ export const certBadges = ['AZ-303 Azure Architect', 'KCNA Kubernetes', 'AZ-900'
 
 // About — narrative paragraphs + working principles (used by About page variants).
 export const bio = [
-  'I came to cloud architecture through information systems and a lot of hands-on operations — which is why I gravitate to owning the entire stack, from the network and identity layer up to the model behind an app.',
-  "At Mannai, Qatar's leading Microsoft Platinum Partner, I migrated enterprise applications to Azure and built MLOps pipelines for clients. Today, at ZIACO, I architect and run a self-hosted private cloud end to end — identity, SSO, intrusion detection, and an AI monitoring pipeline.",
-  "Most of my side projects exist because I wanted that same level of control over my own tools. I'm a Canadian citizen based in Doha — open to Cloud, Solutions, and Systems roles in Canada and the Gulf, remote or relocation.",
+  "I came into cloud through information systems and a lot of hands-on operations work, and that's why I like owning the entire stack, from the network and identity layer up to the model behind an app.",
+  "At Mannai, Qatar's leading Microsoft Platinum Partner, I migrated enterprise applications to Azure and built MLOps pipelines for clients. At ZIACO I now architect and run a self-hosted private cloud end to end, covering identity, SSO, intrusion detection, and an AI monitoring pipeline.",
+  "A lot of my side projects exist because I wanted that same control over my own tools. I'm a Canadian citizen based in Doha, open to Cloud, Systems, Infrastructure, and Solutions roles in Canada (remote or relocation) and the Gulf.",
 ]
 
 export const principles = [
