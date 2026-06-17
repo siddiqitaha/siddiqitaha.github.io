@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1200px; height:630px; }
+  body {
+    font-family:'IBM Plex Sans', sans-serif;
+    background:#0b0f17;
+    color:#e8edf5;
+    position:relative;
+    overflow:hidden;
+  }
+  /* gradient glow */
+  .glow {
+    position:absolute; width:760px; height:760px; right:-200px; top:-260px;
+    background:radial-gradient(circle at center, rgba(124,58,237,.55), rgba(14,165,233,.18) 45%, transparent 70%);
+    filter:blur(8px);
+  }
+  .frame { position:absolute; inset:48px; display:flex; flex-direction:column; justify-content:space-between; }
+  .top { display:flex; align-items:center; gap:22px; }
+  .mono {
+    width:84px; height:84px; border-radius:20px;
+    background:linear-gradient(135deg,#7c3aed,#0ea5e9);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:44px; color:#fff; letter-spacing:-1px;
+  }
+  .kicker { font-family:'IBM Plex Mono', monospace; font-size:20px; letter-spacing:3px; color:#7dd3fc; text-transform:uppercase; }
+  .mid { }
+  .title { font-size:84px; font-weight:700; letter-spacing:-2px; line-height:1.02; }
+  .sub { margin-top:18px; font-size:38px; font-weight:600;
+    background:linear-gradient(90deg,#a78bfa,#38bdf8); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .sub.plain { background:none; color:#aeb9c9; font-weight:500; font-size:34px; }
+  .tags { margin-top:30px; display:flex; gap:14px; flex-wrap:wrap; }
+  .tag { border:1px solid #2a3344; border-radius:999px; padding:10px 20px; font-size:24px; color:#c8d2e0; }
+  .foot { display:flex; align-items:center; justify-content:space-between; }
+  .url { font-family:'IBM Plex Mono', monospace; font-size:26px; color:#9aa7b8; }
+  .dot { width:14px; height:14px; border-radius:50%; background:#34d399; box-shadow:0 0 0 6px rgba(52,211,153,.18); }
+  /* light theme overrides */
+  body.light { background:#ffffff; color:#0f172a; }
+  body.light .glow { background:radial-gradient(circle at center, rgba(124,58,237,.16), rgba(14,165,233,.09) 45%, transparent 70%); }
+  body.light .kicker { color:#0284c7; }
+  body.light .sub { background:linear-gradient(90deg,#7c3aed,#0284c7); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  body.light .sub.plain { background:none; color:#475569; }
+  body.light .tag { border-color:#d3dbe6; color:#334155; }
+  body.light .url { color:#64748b; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="frame">
+    <div class="top">
+      <div class="mono">TS</div>
+      <div class="kicker" id="kicker">Portfolio</div>
+    </div>
+    <div class="mid">
+      <div class="title" id="title">Taha Siddiqi</div>
+      <div class="sub" id="sub">Cloud &amp; Systems Engineer</div>
+      <div class="tags" id="tags"></div>
+    </div>
+    <div class="foot">
+      <div class="url" id="url">siddiqitaha.github.io</div>
+    </div>
+  </div>
+<script>
+  const p = new URLSearchParams(location.search);
+  if (p.get('theme') === 'light') document.body.classList.add('light');
+  if (p.get('kicker')) document.getElementById('kicker').textContent = p.get('kicker');
+  if (p.get('title'))  document.getElementById('title').textContent  = p.get('title');
+  const subEl = document.getElementById('sub');
+  if (p.get('sub')) subEl.textContent = p.get('sub');
+  if (p.get('plain') === '1') subEl.classList.add('plain');
+  if (p.get('url')) document.getElementById('url').textContent = p.get('url');
+  if (p.get('ts')) document.getElementById('title').style.fontSize = p.get('ts') + 'px';
+  const tags = (p.get('tags')||'').split(',').filter(Boolean);
+  document.getElementById('tags').innerHTML = tags.map(t=>`<span class="tag">${t}</span>`).join('');
+</script>
+</body>
+</html>

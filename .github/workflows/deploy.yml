@@ -30,7 +30,10 @@ jobs:
       - name: Sync pinned repos -> site
         continue-on-error: true   # if GitHub API hiccups, build with the last known pins
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # PINS_TOKEN = a read-only PAT that can read your profile's pinned items.
+          # The default GITHUB_TOKEN can't, so without PINS_TOKEN the committed
+          # pinned.json (last known-good) is used instead — see the guard in the script.
+          GITHUB_TOKEN: ${{ secrets.PINS_TOKEN || secrets.GITHUB_TOKEN }}
         run: node scripts/fetch-pinned.mjs
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3

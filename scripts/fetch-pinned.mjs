@@ -44,6 +44,14 @@ const out = nodes.map((n) => ({
   topics: (n.repositoryTopics?.nodes || []).map((t) => t.topic.name),
 }))
 
+// Guard: never overwrite good pins with an empty result. The default Actions
+// GITHUB_TOKEN (an app token) returns no pinnedItems, so without this the
+// committed pins would get wiped to []. Keep the last known-good file instead.
+if (out.length === 0) {
+  console.error('Pinned items came back empty (token likely lacks profile read) — keeping existing pinned.json.')
+  process.exit(0)
+}
+
 const path = new URL('../src/data/pinned.json', import.meta.url)
 writeFileSync(path, JSON.stringify(out, null, 2) + '\n')
 console.log(`Wrote ${out.length} pinned repo(s) to src/data/pinned.json`)

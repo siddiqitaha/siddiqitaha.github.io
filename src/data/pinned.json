@@ -1,1 +1,88 @@
-[]
+[
+  {
+    "name": "hermes-knowledge-brain",
+    "description": "Model-agnostic memory substrate for AI agents",
+    "url": "https://github.com/siddiqitaha/hermes-knowledge-brain",
+    "stars": 0,
+    "language": "Python",
+    "topics": [
+      "ai-agents",
+      "knowledge-graph",
+      "memory",
+      "python"
+    ]
+  },
+  {
+    "name": "local-rag-assistant",
+    "description": "Offline RAG document assistant — local LLM + ChromaDB + Gradio",
+    "url": "https://github.com/siddiqitaha/local-rag-assistant",
+    "stars": 0,
+    "language": "Python",
+    "topics": [
+      "chromadb",
+      "langchain",
+      "llm",
+      "ollama",
+      "python",
+      "rag"
+    ]
+  },
+  {
+    "name": "rag_llama3",
+    "description": "This project uses a local LLM with Ollama for embeddings and ChromaDB for document retrieval. It features a Gradio interface for users to ask questions and adjust response creativity. Documents are pulled from URLs, embedded, stored in ChromaDB, and retrieved to provide concise, sourced answers.",
+    "url": "https://github.com/siddiqitaha/rag_llama3",
+    "stars": 5,
+    "language": "Python",
+    "topics": [
+      "chromadb",
+      "gradio",
+      "llm",
+      "ollama",
+      "python",
+      "rag"
+    ]
+  },
+  {
+    "name": "runbookforge",
+    "description": "Capture a messy build, distill the golden path, validate on a clean env, publish docs",
+    "url": "https://github.com/siddiqitaha/runbookforge",
+    "stars": 0,
+    "language": "Python",
+    "topics": [
+      "cli",
+      "devops",
+      "documentation",
+      "mkdocs",
+      "python"
+    ]
+  },
+  {
+    "name": "azure-terraform-demo",
+    "description": "Infrastructure-as-code for an AKS platform on Azure (modules + CI)",
+    "url": "https://github.com/siddiqitaha/azure-terraform-demo",
+    "stars": 0,
+    "language": "HCL",
+    "topics": [
+      "aks",
+      "azure",
+      "github-actions",
+      "iac",
+      "kubernetes",
+      "terraform"
+    ]
+  },
+  {
+    "name": "self-hosted-private-cloud",
+    "description": "Secure, SSO-protected private cloud on a single host (Caddy + Authelia + LLDAP)",
+    "url": "https://github.com/siddiqitaha/self-hosted-private-cloud",
+    "stars": 0,
+    "language": "Shell",
+    "topics": [
+      "authelia",
+      "caddy",
+      "docker",
+      "self-hosted",
+      "sso"
+    ]
+  }
+]

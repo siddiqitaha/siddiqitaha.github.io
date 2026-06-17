@@ -4,7 +4,7 @@ import { Section, SectionHead, Reveal, Button } from '../components/ui'
 import { profile, projects, skills, certBadges } from '../data/content'
 // Swap these imports for any variant in ../patterns/ (see PATTERNS.md / the /lab gallery).
 import { CapAccordion as Capabilities } from '../patterns/Capabilities'
-import { WorkGrid2 as Work } from '../patterns/Work'
+import { WorkOgCards as Work } from '../patterns/Work'
 
 const featured = projects.slice(0, 4)
 
