@@ -10,7 +10,7 @@ const links = [
   { to: '/experience', label: 'Experience' },
   { to: '/projects', label: 'Projects' },
   { to: '/certifications', label: 'Certifications' },
-  // { to: '/writing', label: 'Writing' },  // hidden for now — page lives at /#/writing; re-enable when ready
+  { to: '/writing', label: 'Writing' },
 ]
 
 const iconBtn = 'grid h-9 w-9 place-items-center rounded-md border border-line text-ink-soft transition hover:border-accent/50 hover:text-ink'
@@ -44,7 +44,7 @@ export default function Nav() {
           <div className="lbl mt-0.5">Cloud &amp; Systems Engineer</div>
         </Link>
 
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           <div className="flex items-center gap-7">
             {links.map((l) => (
               <NavLink
@@ -68,7 +68,7 @@ export default function Nav() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
           <button className="-m-2 p-2" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu" aria-expanded={open}>
             {open ? <X /> : <Menu />}
@@ -77,7 +77,7 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div className="border-t border-line md:hidden">
+        <div className="border-t border-line lg:hidden">
           <div className="mx-auto flex max-w-content flex-col px-6 py-2">
             {links.map((l) => (
               <NavLink
