@@ -36,6 +36,7 @@ export function CertCards({ certifications }) {
           <div>
             <h3 className="font-semibold leading-snug">{c.name}</h3>
             <p className="mt-1 text-sm text-ink-soft">{c.issuer} · {c.year}</p>
+            {c.note && <p className="mt-1 text-xs font-medium text-accent">{c.note}</p>}
           </div>
         </div>
       ))}

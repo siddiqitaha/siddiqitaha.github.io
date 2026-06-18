@@ -218,7 +218,7 @@ export const certifications = [
   { name: 'AZ-303 · Azure Architect Technologies', issuer: 'Microsoft', year: '2021', logo: 'azure' },
   { name: 'KCNA · Kubernetes & Cloud Native Associate', issuer: 'Linux Foundation', year: '2023', logo: 'kubernetes' },
   { name: 'AZ-900 · Azure Fundamentals', issuer: 'Microsoft', year: '2020', logo: 'azure' },
-  { name: 'Artificial Intelligence & Machine Learning', issuer: 'Samsung Innovation Campus', year: '2022', logo: 'samsung' },
+  { name: 'Artificial Intelligence & Machine Learning', issuer: 'Samsung Innovation Campus', year: '2023-2024', logo: 'samsung', note: 'Capstone project: 1st place' },
 ]
 
 export const education = [
