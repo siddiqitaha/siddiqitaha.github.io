@@ -2,9 +2,9 @@
  * "Selected work" layouts. Each takes `projects` (array). Theme-aware. Browse at /lab.
  */
 import { Link } from 'react-router-dom'
-import { Search, BookOpen, BrainCircuit, ServerCog, Boxes, Github } from 'lucide-react'
+import { Search, BookOpen, BrainCircuit, ServerCog, Boxes, ShieldCheck, Github } from 'lucide-react'
 
-const PROJECT_ICONS = { Search, BookOpen, BrainCircuit, ServerCog, Boxes }
+const PROJECT_ICONS = { Search, BookOpen, BrainCircuit, ServerCog, Boxes, ShieldCheck }
 
 // Indexed — 12-col table rows with number, name, tagline, highlight, arrow (current).
 export function WorkIndexed({ projects }) {
@@ -115,17 +115,18 @@ export function WorkOgCards({ projects }) {
     <div className="grid gap-4 sm:grid-cols-2">
       {projects.map((p) => {
         const Icon = PROJECT_ICONS[p.icon] || Github
-        const host = (p.repo || '').replace(/^https?:\/\//, '')
-        return (
-          <a key={p.slug} href={p.repo || `#${p.slug}`} target={p.repo ? '_blank' : undefined} rel="noreferrer"
-            className="group relative flex min-h-[208px] flex-col overflow-hidden rounded-xl border border-line p-5 transition hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-md">
+        const internal = !!p.link
+        const host = internal ? 'Read the write-up' : (p.repo || '').replace(/^https?:\/\//, '')
+        const cls = 'group relative flex min-h-[208px] flex-col overflow-hidden rounded-xl border border-line p-5 transition hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-md'
+        const inner = (
+          <>
             <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full opacity-70"
               style={{ background: 'radial-gradient(circle at center, rgb(var(--accent) / 0.16), transparent 70%)' }} />
             <div className="flex items-center gap-3">
               <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-[#7c3aed] to-[#0ea5e9] text-white">
                 <Icon size={18} />
               </span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">Open source</span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">{internal ? 'Case study' : 'Open source'}</span>
             </div>
             <h3 className="mt-4 font-head text-lg font-semibold leading-snug">{p.name}</h3>
             <p className="mt-1.5 line-clamp-3 text-[13px] leading-relaxed text-ink-soft">{p.tagline}</p>
@@ -134,8 +135,13 @@ export function WorkOgCards({ projects }) {
                 <span key={t} className="rounded-full border border-line px-2 py-0.5 text-[11px] text-ink-soft">{t}</span>
               ))}
             </div>
-            <div className="mt-auto pt-4 font-mono text-[11px] text-ink-faint group-hover:text-accent">{host}</div>
-          </a>
+            <div className="mt-auto pt-4 font-mono text-[11px] text-ink-faint group-hover:text-accent">{host}{internal ? ' →' : ''}</div>
+          </>
+        )
+        return internal ? (
+          <Link key={p.slug} to={p.link} className={cls}>{inner}</Link>
+        ) : (
+          <a key={p.slug} href={p.repo || `#${p.slug}`} target={p.repo ? '_blank' : undefined} rel="noreferrer" className={cls}>{inner}</a>
         )
       })}
     </div>

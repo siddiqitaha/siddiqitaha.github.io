@@ -7,7 +7,7 @@ tags: [RAG, AI, Retrieval, Arabic]
 
 Two years ago, almost to the day, I built my first RAG chatbot for my final year project. Local Llama 2 through Ollama, nomic-embed-text for the embeddings, ChromaDB for retrieval, fixed character-count chunking, and a small Gradio window to ask it questions. It worked, and at the time it felt like magic. The [code is still up](https://github.com/siddiqitaha/rag_llama3), and I even [wrote it up](https://www.linkedin.com/pulse/ai-chatbot-local-llm-efficient-retrieval-project-showcase-siddiqi-zapef/).
 
-This summer I built another one. Same core idea, retrieve then generate, but almost nothing else is the same. Production data instead of a tidy demo set. Arabic and English instead of clean English. A DGX Spark in the room instead of my laptop. GPT-OSS-120B, Qwen3 embeddings, a reranker, Qdrant, all of it running locally. Two years, and both the technology and I have moved a long way.
+This summer we built another one. Same core idea, retrieve then generate, but almost nothing else is the same. Production data instead of a tidy demo set. Arabic and English instead of clean English. A DGX Spark in the room instead of my laptop. GPT-OSS-120B, Qwen3 embeddings, a reranker, Qdrant, all of it running locally. Two years, and both the technology and I have moved a long way.
 
 What surprised me is what did not change. The model was never the hard part. Real data does not behave, and a RAG pipeline looks perfectly healthy while feeding the model garbage. So most of the effort went into two things: cleaning the data, and making the system refuse to guess.
 
@@ -70,6 +70,6 @@ Do the work, verify locally, audit the hard cases, and only a pass continues. A 
 
 ## Takeaway
 
-The model is the most replaceable part of the system. I can swap it next quarter. What I can't download is an understanding of the data in its own language.
+The model is the most replaceable part of the system. We can swap it next quarter. What we cannot download is an understanding of the data in its own language.
 
 This is a short summary, and there is far more depth to each piece. I would love to hear how others have handled RAG on messy, non-English data. Always happy to learn.

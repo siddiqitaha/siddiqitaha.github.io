@@ -3,7 +3,8 @@
  * Theme-aware. Browse at /lab.
  */
 import { useState } from 'react'
-import { Github, ChevronDown } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Github, ChevronDown, ArrowRight } from 'lucide-react'
 
 function Tags({ stack }) {
   return (
@@ -104,18 +105,26 @@ export function ProjAccordion({ projects }) {
 export function ProjCards({ projects }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      {projects.map((p) => (
-        <a key={p.slug} href={p.repo} target="_blank" rel="noreferrer"
-          className="group flex flex-col rounded-lg border border-line p-5 transition hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-sm">
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="font-head font-semibold">{p.name}</h3>
-            <span className="shrink-0 text-ink-faint group-hover:text-accent"><Github size={16} /></span>
-          </div>
-          <p className="mt-2 text-sm leading-relaxed text-ink-soft">{p.tagline}</p>
-          {p.result && <p className="mt-3 text-sm leading-relaxed text-ink-soft">{p.result}</p>}
-          <div className="mt-4 pt-1"><Tags stack={p.stack} /></div>
-        </a>
-      ))}
+      {projects.map((p) => {
+        const internal = !!p.link
+        const cls = 'group flex flex-col rounded-lg border border-line p-5 transition hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-sm'
+        const inner = (
+          <>
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="font-head font-semibold">{p.name}</h3>
+              <span className="shrink-0 text-ink-faint group-hover:text-accent">{internal ? <ArrowRight size={16} /> : <Github size={16} />}</span>
+            </div>
+            <p className="mt-2 text-sm leading-relaxed text-ink-soft">{p.tagline}</p>
+            {p.result && <p className="mt-3 text-sm leading-relaxed text-ink-soft">{p.result}</p>}
+            <div className="mt-4 pt-1"><Tags stack={p.stack} /></div>
+          </>
+        )
+        return internal ? (
+          <Link key={p.slug} to={p.link} className={cls}>{inner}</Link>
+        ) : (
+          <a key={p.slug} href={p.repo} target="_blank" rel="noreferrer" className={cls}>{inner}</a>
+        )
+      })}
     </div>
   )
 }

@@ -4,9 +4,9 @@ import pinned from './pinned.json'
 export const profile = {
   name: 'Taha Nasir Siddiqi',
   title: 'Cloud & Systems Engineer',
-  tagline: 'I build secure, self-hosted cloud & AI systems.',
+  tagline: 'Secure, self-hosted cloud and AI systems.',
   blurb:
-    'I work across infrastructure as code, Kubernetes, and production AI pipelines, building systems that are secure, automated, and easy to rebuild.',
+    'Building secure, automated systems across infrastructure as code, Kubernetes, and production AI pipelines.',
   location: 'Doha, Qatar',
   citizenship: 'Canadian Citizen',
   openToWork: true,
@@ -21,27 +21,28 @@ export const certBadges = ['AZ-303 Azure Architect', 'KCNA Kubernetes', 'AZ-900'
 
 // About — narrative paragraphs + working principles (used by About page variants).
 export const bio = [
-  "I came into cloud through information systems and a lot of hands-on operations work, and that's why I like owning the entire stack, from the network and identity layer up to the model behind an app.",
-  "At Mannai, Qatar's leading Microsoft Platinum Partner, I migrated enterprise applications to Azure and built MLOps pipelines for clients. At ZIACO I now architect and run a self-hosted private cloud end to end, covering identity, SSO, intrusion detection, and an AI monitoring pipeline.",
-  "A lot of my side projects exist because I wanted that same control over my own tools. I'm a Canadian citizen based in Doha, open to Cloud, Systems, Infrastructure, and Solutions roles in Canada (remote or relocation) and the Gulf.",
+  'Cloud and systems work that started in information systems and a lot of hands-on operations, with a habit of owning the whole stack, from the network and identity layer up to the model behind an app.',
+  "At Mannai, Qatar's leading Microsoft Platinum Partner, that meant migrating enterprise applications to Azure and building MLOps pipelines for clients, working alongside delivery and platform teams. At ZIACO, the focus is architecting and running a self-hosted private cloud end to end: identity, SSO, intrusion detection, and an AI monitoring pipeline.",
+  'More recent work has been team-built: production RAG on multilingual data, and securing agentic AI systems. Canadian citizen based in Doha, open to Cloud, Systems, Infrastructure, and Solutions roles in Canada (remote or relocation) and the Gulf.',
 ]
 
 export const principles = [
-  { t: 'Own the outcome', d: 'I take responsibility for the whole result, not just my slice: the late-night fix and the doc that stops it happening again.' },
-  { t: 'Explain it simply', d: 'I translate technical trade-offs into plain language, so non-engineers can make good decisions with me.' },
-  { t: 'Document for the next person', d: "I write things down as I build, so the team (or future me) isn't stuck reverse-engineering my choices." },
+  { t: 'Own the outcome', d: 'Responsibility for the whole result, not just one slice: the late-night fix and the doc that stops it happening again.' },
+  { t: 'Explain it simply', d: 'Translating technical trade-offs into plain language, so non-engineers can make good decisions together.' },
+  { t: 'Document for the next person', d: 'Writing things down along the way, so the team (or future me) is not stuck reverse-engineering decisions.' },
 ]
 
 export const skills = [
   { group: 'Cloud', items: ['Microsoft Azure (primary)', 'AWS'] },
-  { group: 'AI / MLOps', items: ['RAG pipelines', 'LLM deployment', 'LangChain', 'Ollama', 'Embeddings & vector search', 'Prompt engineering', 'Gradio', 'Azure ML'] },
+  { group: 'AI / MLOps', items: ['RAG pipelines', 'Multilingual RAG', 'Document extraction (OCR)', 'Vector similarity search (VSS)', 'Embeddings & rerankers', 'Grounding & verification', 'LLM deployment', 'GPT-OSS', 'LangChain', 'Ollama', 'Prompt engineering', 'Azure ML'] },
+  { group: 'AI Security & Governance', items: ['Agentic AI security', 'Guardrails', 'Prompt-injection defense', 'Data-exfiltration prevention', 'Human-in-the-loop approval', 'DefenseClaw', 'MCP'] },
   { group: 'Infrastructure as Code', items: ['Terraform', 'ARM templates', 'Ansible'] },
   { group: 'Containers & Orchestration', items: ['Docker', 'Docker Compose', 'Kubernetes (AKS)', 'Helm'] },
   { group: 'CI/CD', items: ['Azure DevOps', 'GitHub Actions', 'Jenkins'] },
   { group: 'Security & IAM', items: ['SSO / SAML', 'Microsoft Entra ID', 'Azure Key Vault', 'RBAC', 'Authelia', 'LLDAP', 'UFW', 'Fail2ban'] },
   { group: 'Linux & Self-Hosting', items: ['Linux', 'Caddy', 'Cloudflare', 'Tailscale', 'Nextcloud', 'Automated backups'] },
-  { group: 'Monitoring', items: ['Azure Monitor', 'Application Insights', 'Alerting', 'Anomaly detection'] },
-  { group: 'Databases', items: ['SQLite', 'ChromaDB', 'Qdrant', 'Knowledge graphs'] },
+  { group: 'Observability', items: ['OpenTelemetry', 'Grafana', 'Prometheus', 'Loki', 'Tempo', 'Splunk', 'Azure Monitor', 'Application Insights', 'Anomaly detection'] },
+  { group: 'Databases & Storage', items: ['Qdrant', 'ChromaDB', 'FalkorDB', 'SQLite', 'MinIO', 'Knowledge graphs'] },
   { group: 'Web / Frontend', items: ['React', 'Vite', 'Tailwind CSS', 'JavaScript'] },
   { group: 'Languages', items: ['Python (Flask)', 'Bash', 'PowerShell', 'HCL', 'SQL'] },
 ]
@@ -55,8 +56,8 @@ export const experience = [
     points: [
       'Architected and deployed a 13-service containerized private cloud on a dedicated Linux server (ERP, custom finance apps, video conferencing, SSO stack), hardened with UFW/Fail2ban across a 3-country encrypted mesh network.',
       'Developing an AI monitoring pipeline integrating computer vision, IoT sensor feeds, and operational data to automate risk detection across inventory, procurement, and compliance.',
-      'Built a custom Flask app integrated with an ERP API for daily ledger entries, receipt capture, and multi-currency reconciliation — replacing commercial SaaS with a self-hosted alternative.',
-      'Implemented network segmentation, encrypted tunnels, IAM, and automated intrusion detection across all services with zero dedicated security staff.',
+      'Built a custom Flask app integrated with an ERP API for daily ledger entries, receipt capture, and multi-currency reconciliation, replacing commercial SaaS with a self-hosted alternative.',
+      'Implemented network segmentation, encrypted tunnels, IAM, and automated intrusion detection across all services.',
     ],
   },
   {
@@ -211,8 +212,29 @@ const fromPinned = (pinned || []).map((r) => ({
   stars: r.stars || 0,
 }))
 
-// Pinned repos win; otherwise show the curated case studies.
-export const projects = fromPinned.length ? fromPinned : curatedProjects
+// Hand-authored case studies (team projects), linked to their write-ups. Shown ahead of repos.
+const caseStudies = [
+  {
+    slug: 'production-rag-arabic',
+    name: 'Production RAG on real Arabic data',
+    icon: 'Search',
+    tagline: 'A multilingual RAG system the team built and runs locally on a DGX Spark, with verification loops and a refuse-to-guess design.',
+    stack: ['RAG', 'Qwen3', 'Qdrant', 'GPT-OSS', 'DGX'],
+    link: '/writing/rag-on-real-arabic-data',
+  },
+  {
+    slug: 'securing-agentic-ai',
+    name: 'Securing agentic AI',
+    icon: 'ShieldCheck',
+    tagline: 'A firewall for AI agents the team runs: guardrails, prompt-injection and exfiltration defense, and full observability across many agents.',
+    stack: ['DefenseClaw', 'Guardrails', 'OpenTelemetry', 'Splunk'],
+    link: '/writing/firewall-for-agentic-ai',
+  },
+]
+
+// Case studies first, then pinned repos (or the curated list when nothing is pinned).
+const repoProjects = fromPinned.length ? fromPinned : curatedProjects
+export const projects = [...caseStudies, ...repoProjects]
 
 export const certifications = [
   { name: 'AZ-303 · Azure Architect Technologies', issuer: 'Microsoft', year: '2021', logo: 'azure' },

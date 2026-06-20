@@ -7,7 +7,7 @@ export default function About() {
       <Reveal>
         <p className="lbl">About</p>
         <h1 className="mt-5 max-w-2xl font-head text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-          I like owning the whole stack.
+          Owning the whole stack.
         </h1>
       </Reveal>
 
