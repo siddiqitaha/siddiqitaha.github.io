@@ -215,6 +215,24 @@ const fromPinned = (pinned || []).map((r) => ({
 // Hand-authored case studies (team projects), linked to their write-ups. Shown ahead of repos.
 const caseStudies = [
   {
+    slug: 'galileo-governed-openclaw',
+    name: 'Galileo-Governed OpenClaw',
+    icon: 'ShieldCheck',
+    tagline: 'An autonomous AI agent run behind a fail-closed governor, with every action audited and every LLM turn scored.',
+    highlight: 'Fail-closed · fully observed',
+    problem:
+      'Letting an autonomous agent take real actions is risky: without a gate a bad tool call just runs, and without observability you cannot see what it did or why.',
+    build: [
+      'OpenClaw (the agent) checks every tool call against Agent Control, which allows or blocks it, failing closed when the governor is unreachable.',
+      'Each governance decision (allow or block) streams to Splunk as an audit log.',
+      'Each LLM turn is converted to an OpenInference span and sent to Galileo for quality scoring.',
+      'The whole stack is one docker compose up, with every version pinned for reproducible deploys.',
+    ],
+    stack: ['OpenClaw', 'Agent Control', 'Galileo', 'Splunk', 'OpenTelemetry', 'Docker'],
+    result: 'A governed agent you can trust with real access: unsafe actions are blocked by default, and every decision and LLM turn is auditable in Splunk and Galileo.',
+    repo: 'https://github.com/siddiqitaha/galileo-governed-openclaw',
+  },
+  {
     slug: 'production-rag-arabic',
     name: 'Production RAG on real Arabic data',
     icon: 'Search',
