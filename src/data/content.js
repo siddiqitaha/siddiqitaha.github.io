@@ -13,7 +13,7 @@ export const profile = {
   email: 'siddiqitaha1@gmail.com',
   github: 'https://github.com/siddiqitaha',
   linkedin: 'https://linkedin.com/in/siddiqitaha',
-  resumeUrl: '/resume.pdf', // drop your résumé PDF in /public as resume.pdf
+  resumeUrl: '/resume.pdf?v=20260825', // bump the ?v= when the PDF changes so browsers refetch
 }
 
 // Short cert labels for the hero badges.
@@ -21,14 +21,16 @@ export const certBadges = ['KCNA Kubernetes', 'AZ-900 Azure', 'Exam AZ-303']
 
 // About — narrative paragraphs + working principles (used by About page variants).
 export const bio = [
-  'Cloud and systems work that started in information systems and a lot of hands-on operations, with a habit of owning the whole stack, from the network and identity layer up to the model behind an app.',
-  "At Mannai, Qatar's leading Microsoft Platinum Partner, that meant migrating enterprise applications to Azure and building MLOps pipelines for clients, working alongside delivery and platform teams. At ZIACO, the focus is architecting and running a self-hosted private cloud end to end: identity, SSO, intrusion detection, and an AI monitoring pipeline.",
-  'More recent work has been team-built: production RAG on multilingual data, and securing agentic AI systems. Canadian citizen based in Doha, open to Cloud, Systems, Infrastructure, and Solutions roles in Canada (remote or relocation) and the Gulf.',
+  'Cloud and systems work that started in information systems and a lot of hands-on operations, with a habit of owning the whole thing end to end, from the network and identity layer up to the model behind an app.',
+  'At Mannai, a Microsoft partner in Doha, that meant migrating 15+ .NET applications to Azure App Service and AKS, and building an Azure landing zone in Terraform for a government health client: hub-and-spoke networking, a central firewall, Bastion for admin access, and logging collected from every spoke.',
+  'At ZIACO I run a 13-service private cloud on one Linux server as the only infrastructure engineer, and I set up the team\'s shared GPU workstation as a jump server so five engineers get their own environment without anyone managing SSH keys by hand.',
+  'The last year has been AI infrastructure: a production RAG system over Arabic policy documents that refuses to answer rather than guess, and a security layer that approves or blocks an AI agent\'s tool calls before they run and records every decision. I also keep a lab of deliberately vulnerable MCP servers to test what security scanners actually catch.',
+  'Canadian citizen based in Doha, open to Cloud, Systems, Infrastructure, and Solutions roles in Canada (remote or relocation) and the Gulf.',
 ]
 
 export const principles = [
-  { t: 'Own the outcome', d: 'Responsibility for the whole result, not just one slice: the late-night fix and the doc that stops it happening again.' },
-  { t: 'Explain it simply', d: 'Translating technical trade-offs into plain language, so non-engineers can make good decisions together.' },
+  { t: 'No error is not the same as it worked', d: 'A fine-tuning run finished clean and the adapter turned out to be loading as all zeros. Checking the actual numbers is the only way to know something worked.' },
+  { t: 'Fail closed', d: 'When the thing that checks an action is unreachable, block the action. A security layer that lets calls through when it breaks is not a security layer.' },
   { t: 'Document for the next person', d: 'Writing things down along the way, so the team (or future me) is not stuck reverse-engineering decisions.' },
 ]
 
@@ -290,8 +292,8 @@ const repoProjects = fromPinned.length ? fromPinned : curatedProjects
 export const projects = [...caseStudies, ...repoProjects]
 
 export const certifications = [
-  { name: 'Exam AZ-303 · Azure Architect Technologies', issuer: 'Microsoft', year: '2021', logo: 'azure' },
-  { name: 'KCNA · Kubernetes & Cloud Native Associate', issuer: 'Linux Foundation', year: '2023', logo: 'kubernetes' },
+  { name: 'Exam AZ-303 · Azure Architect Technologies', issuer: 'Microsoft', year: '2021', logo: 'azure', note: 'Exam passed; retired Mar 2022, now AZ-305' },
+  { name: 'KCNA · Kubernetes & Cloud Native Associate', issuer: 'Linux Foundation', year: '2023', logo: 'kubernetes', note: 'Valid to Oct 2026' },
   { name: 'AZ-900 · Azure Fundamentals', issuer: 'Microsoft', year: '2020', logo: 'azure' },
   { name: 'Artificial Intelligence & Machine Learning', issuer: 'Samsung Innovation Campus', year: '2023-2024', logo: 'samsung', note: 'Capstone project: 1st place' },
 ]
