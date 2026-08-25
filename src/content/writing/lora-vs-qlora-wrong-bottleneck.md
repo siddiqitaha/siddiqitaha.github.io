@@ -1,33 +1,38 @@
 ---
-title: "I ran LoRA against QLoRA and QLoRA lost"
-date: 2026-08-19
-summary: "QLoRA is meant to be the memory-efficient option. On a machine with 128GB of memory it cost 51% more time and saved something I did not need. That is not a failed experiment, it is the finding."
-tags: [Fine-Tuning, LoRA, QLoRA, Benchmarks]
+title: "Fine-Tuning with LoRA and QLoRA"
+date: 2026-08-21
+summary: "RAG or fine-tuning. One gives a model access to what you know, the other changes how it behaves. I tested LoRA against QLoRA on the same model and the memory-saving option lost, which turned out to be the interesting part."
+tags: [Fine-Tuning, LoRA, QLoRA, RAG]
 ---
 
-The advice you read everywhere is that QLoRA is the efficient choice. Squeeze the frozen base model down to 4-bit, train the small adapter on top, and fit a model on hardware that could not otherwise hold it. It is good advice. It is also advice about a specific problem, and I had a different one.
+RAG or fine-tuning. One gives a model access to what you know. The other changes how it behaves.
 
-## What the two techniques actually are
+RAG gives the model access to your documents. It looks things up and answers using the retrieved context. Update a fact by editing the document, answers can cite where they came from, and access can be restricted at retrieval time.
 
-**LoRA** freezes the base model's weights and bolts on a small trainable side-path, about 0.1% as many numbers. At inference the prompt runs through both and the results are added. The adapter is a separate file, roughly 100MB against the base model's 16GB.
+Fine-tuning changes the model's learned behaviour. It is good at teaching tone, format, terminology, and response patterns. Knowledge baked into the weights does not update when the documents change, and fine-tuning by itself gives the model nothing to cite. Confidential or fast-changing material is usually better kept in RAG than baked into the weights.
 
-**QLoRA** is LoRA with the frozen base squeezed to 4-bit. Three things behave differently and it is worth being precise about them:
+RAG was covered previously in [Building a RAG system on real Arabic data](/writing/rag-on-real-arabic-data). This is the other half.
 
-- The base model **on disk** is unchanged. The compression happens when it loads.
-- The base model **in memory** is 4-bit and stays that way. It is frozen, so it is never trained.
-- The **adapter** stays 16-bit, deliberately. A 4-bit adapter trains unstably.
+## LoRA and QLoRA
 
-So QLoRA is two precisions on purpose: a 4-bit frozen base and a 16-bit adapter that does the learning. The 4-bit base has to be unpacked back to 16-bit on **every single forward pass**. You are spending time to buy capacity.
+Full fine-tuning updates every parameter in the model. For a model with billions of parameters, training memory can be several times larger than the model weights alone once gradients, optimizer states, activations and precision are accounted for. It also leaves you with a separate set of model weights for each fine-tune. Eight teams, eight copies.
 
-That trade is the whole story. It is only a good trade if capacity is what you are short of.
+**LoRA** freezes the base model and trains a small set of low-rank updates alongside selected layers. The original parameters stay locked and only the adapter weights learn. Depending on the rank and which layers are targeted, those trainable parameters can be a tiny fraction of the full model. During inference those learned updates are applied alongside the base weights, or can be merged into them.
 
-## The setup
+So the base model stays untouched, each fine-tune produces a much smaller adapter rather than another full model, and training memory drops significantly. Eight teams, one base model, eight adapters.
 
-Qwen3-8B, 16.4GB on disk. NeMo AutoModel 26.02. 342 training and 30 test question-answer pairs I wrote from our own DefenseClaw documentation, so I could tell whether the model had actually learned the facts or just picked up the tone.
+**QLoRA** shrinks the memory requirement again. Standard LoRA does not require the base model to be full precision, but it is commonly loaded in FP16 or BF16. QLoRA instead keeps the frozen base model quantized to 4-bit while training the adapters at higher precision. The quantized weights are dequantized to the compute datatype as needed during computation, which saves memory but can cost training speed.
 
-Same everything else: rank 16, alpha 32, dropout 0.1, all linear layers, seed 42, 100 steps, learning rate 1e-5, AdamW. The two config files differ only in the quantization block. Machine idle, both runs back to back.
+Two details worth being precise about, because they are easy to get wrong:
 
-## The numbers
+- The base model **on disk** is unchanged. The compression happens at load time.
+- The **adapter** stays 16-bit deliberately. A 4-bit adapter trains unstably.
+
+## The test
+
+Both were run on a DGX Spark, fine-tuning Qwen3-8B on 342 examples from the DefenseClaw documentation. Everything was held the same except the setting that enabled 4-bit quantization for the base model.
+
+Rank 16, alpha 32, dropout 0.1, all linear layers, seed 42, 100 steps, learning rate 1e-5, AdamW. NeMo AutoModel 26.02. Machine idle, both runs back to back.
 
 | | LoRA | QLoRA |
 |---|---|---|
@@ -37,37 +42,27 @@ Same everything else: rank 16, alpha 32, dropout 0.1, all linear layers, seed 42
 | Adapter size | 100 MB | 99 MB |
 | Final validation loss | 2.0405 | 2.0452 |
 
-Quality came out equivalent, checked three independent ways: validation loss within 0.2%, adapter weights near-identical, and the generated answers on 30 held-out questions substantively the same.
+QLoRA used around half the memory and took roughly 50% longer. On the questions the dataset covered, the resulting answers were broadly similar: validation loss within 0.2%, and the generated answers on 30 held-out questions substantively the same.
 
-## Why QLoRA lost
+That trade is worth making when memory is what you are short of. It is not worth it when memory is sitting spare, which is what happened here. The Spark had 53 GB free and LoRA only needed 17, so the compression solved a problem I did not have and the extra training time was a straight loss.
 
-The machine has 128GB of unified memory, about 119GB usable. LoRA peaked at 17.2 GiB. It was never anywhere near a limit.
+Same technique, opposite answer, depending on the machine.
 
-So the 9.7 GiB that QLoRA saved bought nothing at all. And the memory on this hardware is roughly seven times slower than the memory on a datacenter card, which is exactly the resource QLoRA's unpack-on-every-forward-pass cost is charged against. It spent 51% more time to save something I had in abundance.
+The identical adapter size is the mechanism visible in one number. 100 MB against 99 MB, because quantization only touches the frozen base and the adapter is 16-bit in both runs. The adapter is the only thing you keep, and it is the same either way.
 
-On a 24GB card where LoRA will not fit, QLoRA is the difference between working and crashing. Here it was the difference between four minutes and six.
+### A second result I was not looking for
 
-**A technique is not efficient or inefficient on its own. It solves one specific shortage, and you have to know which shortage you actually have.**
+I reran both while another model was competing for memory bandwidth.
 
-## The identical adapter size is the proof
+QLoRA came in at 6m12s contended against 6m13s idle. One second apart. LoRA went from 4m07s idle to 5m08s contended.
 
-100 MB against 99 MB. That is not a coincidence, it is the mechanism visible in a single number: quantization only touches the frozen base, and the adapter is 16-bit in both runs. The adapter is the only thing you keep, and it is the same either way.
+QLoRA is compute-bound on dequantization, so it does not notice bandwidth pressure. LoRA is bandwidth-bound, so it does. Measured by accident, but it is the clearest demonstration of the mechanism in the whole exercise.
 
-## A second finding I did not go looking for
+## Check that it loaded at all
 
-I ran both again while another model was competing for memory bandwidth.
+Before any of those numbers meant anything, I checked whether the adapter had actually loaded. It had not.
 
-QLoRA: 6m12s contended, 6m13s idle. One second apart.
-
-LoRA: 5m08s contended, 4m07s idle.
-
-QLoRA is compute-bound on unpacking, so it does not notice bandwidth pressure. LoRA is bandwidth-bound, so it does. I measured it by accident, and it is the cleanest demonstration of the mechanism in the whole exercise.
-
-## The bug that nearly wasted all of it
-
-Before any of those numbers meant anything, I checked whether the adapter had actually loaded.
-
-NeMo AutoModel 26.02 writes LoRA checkpoints with the key prefix that the loader expects:
+NeMo AutoModel 26.02 writes LoRA checkpoints with the key prefix the loader expects:
 
 ```
 base_model.model.model.layers.0.mlp.down_proj.lora_A.weight
@@ -79,20 +74,28 @@ and QLoRA checkpoints without it:
 model.layers.0.mlp.down_proj.lora_A.weight
 ```
 
-The loader then matches zero keys. It emits a warning about missing adapter keys and **loads successfully anyway**, with every adapter tensor left at its initial value. No exception. No failure. The model loads and runs perfectly well, as the plain base model.
+The loader matches zero keys, emits a warning about missing adapter keys, and loads successfully anyway with every adapter tensor left at its initial value. No exception, no failure. The model runs perfectly well, as the plain base model.
 
-I caught it because the `lora_B` tensors initialise at exactly zero, so any non-zero value proves training happened. I read them directly: 253 tensors, mean absolute value 0.00000000.
+I caught it because `lora_B` tensors initialise at exactly zero, so any non-zero value proves training happened. Reading them directly gave 253 tensors at a mean absolute value of 0.00000000. The weights on disk were fine. Reading the file directly gave 0.000215, essentially identical to LoRA's 0.000206. Training had worked. Loading had not. Renaming the keys fixed it.
 
-The weights on disk were fine. Reading the file directly gave a mean of 0.000215, essentially identical to LoRA's 0.000206. Training had worked. Loading had not. Renaming the keys fixed it, and the tensors came back at 0.00026.
+Anyone who follows the playbook and evaluates with the standard loader will test the base model, see no improvement, and conclude their QLoRA run failed.
 
-Anyone who follows the vendor playbook and then evaluates with the standard loader will test the base model, see no improvement, and conclude their QLoRA run failed.
+## What the model learned
 
-**No error is not the same as it worked.** The only reason I know these results are real is that I read the numbers instead of trusting that the run finished cleanly.
+Style transferred well. Right vocabulary, better structure, more focused answers.
 
-## What actually transferred
+Specific facts were much less reliable. Asked one factual question, it gave the generic answer even though that fact appeared in the training data five times. Training for five times longer made the model fit the 342 examples more closely, but generalisation got worse.
 
-Worth saying plainly, because it is the thing fine-tuning is most often misunderstood for. The adapter learned style, structure, confidence and vocabulary. On one question it moved the model from a vague "secure intermediary layer" to "the client uses a bearer token, the guardrail uses the provider API key": correct in shape, wrong in the specifics.
+The dataset had 342 examples of how DefenseClaw's parts fit together and none that clearly explained what DefenseClaw itself is. Asked directly what it does, all three versions invented an answer, and a different one each time. The tuned versions simply sounded more confident about it.
 
-It did not reliably learn exact strings. A particular pair of header names appeared five times in the training data and the model never produced them, at any learning rate or step count I tried. Five mentions could not outweigh everything the base model had already read about how proxies work.
+Fine-tuning cannot compensate for information that is missing or poorly represented in the dataset. Building the dataset is the work.
 
-Fine-tuning teaches behaviour. Retrieval provides facts. They are not substitutes, and the adapter contains no dataset to look anything up in.
+## Takeaway
+
+Fine-tuning changed how the model behaved. With these 342 examples, it did not reliably change what it knew. A better and broader dataset could improve that, but the distinction is still useful: behaviour is generally easier to teach through fine-tuning than reliable, updateable factual knowledge.
+
+Want the model to sound like your team and follow your format? Fine-tuning, and LoRA makes it cheap enough to be practical. Want it to answer from current product documentation and show where the answer came from? RAG.
+
+A lot of real systems want both. RAG supplies the knowledge; fine-tuning can shape how the model uses it. Refusing to answer when the retrieved passage does not support the response can be reinforced through fine-tuning, although it can also be implemented through prompting and application logic.
+
+One last thing: change one variable at a time. Example configs are written to demonstrate a technique, not to compare two, so their defaults rarely make a fair test.
