@@ -19,8 +19,8 @@ export function ContactSplit({ profile }) {
       <div className="md:col-span-7">
         <h2 className="font-head text-3xl font-semibold tracking-tight md:text-4xl">Let's talk.</h2>
         <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-soft">
-          Whether it's a role, a collaboration, or a question about something I've built — email is the
-          quickest way to reach me.
+          Open to Cloud and Infrastructure roles in Canada (remote or relocation) and the Gulf.
+          Email is the quickest way to reach me.
         </p>
         <div className="mt-7">
           <a href={profile.resumeUrl} className="btn-outline">Download résumé ↓</a>
