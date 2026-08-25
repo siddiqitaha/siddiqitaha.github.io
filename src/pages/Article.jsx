@@ -45,7 +45,7 @@ export default function Article() {
         </div>
       </Reveal>
 
-      <article className="prose prose-slate mt-10 max-w-3xl dark:prose-invert prose-headings:font-head prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-pre:rounded-lg prose-pre:border prose-pre:border-line prose-pre:bg-[#0d1117] prose-img:rounded-lg">
+      <article className="prose prose-slate mt-10 max-w-[42rem] prose-lg dark:prose-invert prose-headings:font-head prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-pre:rounded-lg prose-pre:border prose-pre:border-line prose-pre:bg-[#0d1117] prose-img:rounded-lg">
         <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
           {post.content}
         </ReactMarkdown>

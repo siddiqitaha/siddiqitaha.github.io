@@ -45,7 +45,7 @@ export default function Home() {
             <div>
               <Reveal>
                 <SectionHead title="Selected Work"
-                  action={<Link to="/projects" className="lbl hover:text-ink">View all →</Link>} />
+                  action={<Link to="/projects" className="lbl inline-flex items-center py-2.5 hover:text-ink">View all →</Link>} />
               </Reveal>
               <div className="pt-5"><Work projects={featured} /></div>
             </div>
