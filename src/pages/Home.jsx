@@ -20,11 +20,11 @@ export default function Home() {
             <div>
               <h1 className="font-head text-3xl font-semibold leading-[1.12] tracking-tight md:text-4xl">
                 Cloud &amp; Systems Engineer building<br />
-                <span className="text-accent">secure infrastructure and production AI.</span>
+                <span className="text-accent">secure infrastructure and AI systems.</span>
               </h1>
               <p className="mt-5 max-w-lg text-lg leading-relaxed text-ink-soft">
-                5+ years across Azure and AWS, working in infrastructure as code, Kubernetes,
-                and RAG pipelines. Based in {profile.location}.
+                5 years on Azure, working in infrastructure as code, Kubernetes, RAG pipelines,
+                and the security layer in front of AI agents. Based in {profile.location}.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {certBadges.map((c) => (
@@ -68,8 +68,8 @@ export default function Home() {
       <Section className="py-14">
         <div className="border-t border-ink pt-10">
           <Reveal>
-            <h2 className="font-head text-3xl font-semibold tracking-tight">Let's build something solid.</h2>
-            <p className="mt-3 max-w-md text-ink-soft">Have something you're building? I'd like to hear about it.</p>
+            <h2 className="font-head text-3xl font-semibold tracking-tight">Open to Cloud and Infrastructure roles.</h2>
+            <p className="mt-3 max-w-md text-ink-soft">Canadian citizen in Doha, looking at roles in Canada (remote or relocation) and the Gulf. Happy to talk through anything here in more detail.</p>
             <div className="mt-7"><Button href={`mailto:${profile.email}`}>Get in touch <ArrowRight size={16} /></Button></div>
           </Reveal>
         </div>

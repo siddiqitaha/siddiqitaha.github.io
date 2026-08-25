@@ -83,7 +83,7 @@ export function HeroMinimal({ profile, certBadges }) {
         Secure, self-hosted <span className="text-accent">cloud &amp; AI systems.</span>
       </h1>
       <p className="mt-6 max-w-lg text-lg leading-relaxed text-ink-soft">
-        5+ years across Azure &amp; AWS — infrastructure-as-code, Kubernetes, and production RAG pipelines.
+        5 years on Azure: infrastructure as code, Kubernetes, RAG pipelines, and AI agent security.
       </p>
       <div className="mt-6"><Badges certBadges={certBadges} /></div>
       <div className="mt-7 flex flex-wrap items-center gap-5">
