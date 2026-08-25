@@ -2,9 +2,9 @@
  * "Selected work" layouts. Each takes `projects` (array). Theme-aware. Browse at /lab.
  */
 import { Link } from 'react-router-dom'
-import { Search, BookOpen, BrainCircuit, ServerCog, Boxes, ShieldCheck, Github } from 'lucide-react'
+import { Search, BookOpen, BrainCircuit, ServerCog, Boxes, ShieldCheck, ShieldAlert, Github } from 'lucide-react'
 
-const PROJECT_ICONS = { Search, BookOpen, BrainCircuit, ServerCog, Boxes, ShieldCheck }
+const PROJECT_ICONS = { Search, BookOpen, BrainCircuit, ServerCog, Boxes, ShieldCheck, ShieldAlert }
 
 // Indexed — 12-col table rows with number, name, tagline, highlight, arrow (current).
 export function WorkIndexed({ projects }) {

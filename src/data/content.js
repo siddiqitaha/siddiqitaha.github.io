@@ -6,7 +6,7 @@ export const profile = {
   title: 'Cloud & Systems Engineer',
   tagline: 'Secure, self-hosted cloud and AI systems.',
   blurb:
-    'Building secure, automated systems across infrastructure as code, Kubernetes, and production AI pipelines.',
+    'Building and running secure cloud and Linux infrastructure, and the security layer that sits in front of AI agents.',
   location: 'Doha, Qatar',
   citizenship: 'Canadian Citizen',
   openToWork: true,
@@ -17,7 +17,7 @@ export const profile = {
 }
 
 // Short cert labels for the hero badges.
-export const certBadges = ['AZ-303 Azure Architect', 'KCNA Kubernetes', 'AZ-900']
+export const certBadges = ['KCNA Kubernetes', 'AZ-900 Azure', 'Exam AZ-303']
 
 // About — narrative paragraphs + working principles (used by About page variants).
 export const bio = [
@@ -34,8 +34,10 @@ export const principles = [
 
 export const skills = [
   { group: 'Cloud', items: ['Microsoft Azure (primary)', 'AWS'] },
-  { group: 'AI / MLOps', items: ['RAG pipelines', 'Multilingual RAG', 'Document extraction (OCR)', 'Vector similarity search (VSS)', 'Embeddings & rerankers', 'Grounding & verification', 'LLM deployment', 'GPT-OSS', 'LangChain', 'Ollama', 'Prompt engineering', 'Azure ML'] },
-  { group: 'AI Security & Governance', items: ['Agentic AI security', 'Guardrails', 'Prompt-injection defense', 'Data-exfiltration prevention', 'Human-in-the-loop approval', 'DefenseClaw', 'MCP'] },
+  { group: 'AI / MLOps', items: ['RAG pipelines', 'Multilingual RAG', 'Agentic RAG', 'Document extraction (OCR)', 'Vector similarity search (VSS)', 'Embeddings & rerankers', 'Grounding & verification', 'Retrieval evaluation', 'LLM deployment', 'vLLM', 'Ollama', 'GPT-OSS', 'Qwen3', 'LangChain', 'Prompt engineering', 'Azure ML'] },
+  { group: 'Fine-Tuning', items: ['LoRA', 'QLoRA', 'PEFT', 'NVIDIA NeMo', 'Adapter evaluation'] },
+  { group: 'AI Security & Governance', items: ['Agentic AI security', 'OWASP MCP Top 10', 'Cisco AI Defense', 'DefenseClaw', 'Agent Control', 'Galileo', 'Guardrails', 'Prompt-injection defense', 'Data-exfiltration prevention', 'Human-in-the-loop approval'] },
+  { group: 'MCP', items: ['MCP servers & clients', 'Tool-call governance', 'Vulnerable MCP server labs'] },
   { group: 'Infrastructure as Code', items: ['Terraform', 'ARM templates', 'Ansible'] },
   { group: 'Containers & Orchestration', items: ['Docker', 'Docker Compose', 'Kubernetes (AKS)', 'Helm'] },
   { group: 'CI/CD', items: ['Azure DevOps', 'GitHub Actions', 'Jenkins'] },
@@ -54,10 +56,12 @@ export const experience = [
     location: 'Remote',
     period: 'Nov 2024 – Present',
     points: [
-      'Architected and deployed a 13-service containerized private cloud on a dedicated Linux server (ERP, custom finance apps, video conferencing, SSO stack), hardened with UFW/Fail2ban across a 3-country encrypted mesh network.',
-      'Developing an AI monitoring pipeline integrating computer vision, IoT sensor feeds, and operational data to automate risk detection across inventory, procurement, and compliance.',
+      'Built and run a 13-service containerized private cloud on a dedicated Linux server (ERP, custom Flask finance apps, video conferencing, SSO via Caddy + Authelia + LLDAP, automated backups with alerting) as the sole infrastructure engineer, with network segmentation, default-deny access control and UFW/Fail2ban across a 3-country encrypted mesh network.',
       'Built a custom Flask app integrated with an ERP API for daily ledger entries, receipt capture, and multi-currency reconciliation, replacing commercial SaaS with a self-hosted alternative.',
-      'Implemented network segmentation, encrypted tunnels, IAM, and automated intrusion detection across all services.',
+      'Set up a shared GPU workstation as a jump server for a 5-engineer team: SSH gated by Tailscale identity instead of managed key files, demos published via Cloudflare Tunnel with Google SSO and an email allowlist, per-user browser IDEs, and one admin CLI so onboarding is a single command.',
+      'Built a production RAG system over Arabic-first policy documents on Qdrant with locally served models, designed to answer only from retrieved sources and refuse rather than guess, with verification passes over answers.',
+      'Built the security layer for AI agents: every tool call is approved or blocked before it runs, and blocked outright if the checker is unreachable; decisions record to Splunk and model turns score in Galileo, using Cisco AI Defense inline inspection and Agent Control policy.',
+      'Compared LoRA and QLoRA fine-tuning and showed the memory-saving method cost 51% more time for a saving the hardware did not need; found a bug in NVIDIA\'s NeMo container that writes adapter files under key names the loader silently ignores.',
     ],
   },
   {
@@ -66,10 +70,10 @@ export const experience = [
     location: 'Doha, Qatar',
     period: 'Jun 2023 – Sep 2024',
     points: [
-      'Architected the migration of 15+ .NET enterprise applications to Azure App Service and AKS, with production/staging/test environments and CI/CD via Azure DevOps and Terraform.',
-      'Built IaC-driven CI/CD pipelines that accelerated software delivery by 56%.',
-      'Designed government-compliant cloud architectures automating security controls, RBAC, and secret management via Azure Key Vault to achieve audit compliance.',
-      'Engineered an end-to-end MLOps pipeline for LLM development using Python, ChromaDB, and LangChain with RAG.',
+      'Led the migration of 15+ .NET enterprise applications to Azure App Service and AKS, with production/staging/test environments and CI/CD via Azure DevOps and Terraform.',
+      'Replaced manual multi-step releases with Terraform-driven CI/CD pipelines, so a deployment became a single pipeline run with the same result in every environment.',
+      'Built an Azure landing zone in Terraform for a government health client: hub-and-spoke VNets and NSG rules generated from a source spreadsheet, Azure Firewall, Bastion for admin access, Key Vault for secrets, and Log Analytics collecting from every spoke.',
+      'Built a RAG pipeline for enterprise clients using Python, ChromaDB, and LangChain, automating document ingestion, embedding, and deployment.',
     ],
   },
   {
@@ -79,7 +83,7 @@ export const experience = [
     period: 'Sep 2021 – Jun 2023',
     points: [
       'Managed accounts, access, and security policies across Active Directory and Azure AD for 200+ students and faculty.',
-      'Reduced classroom/lab system downtime by 85% through proactive monitoring and rapid fault resolution.',
+      'Cut repeat classroom and lab failures by monitoring for the underlying faults and fixing causes rather than resetting machines.',
       'Managed locally hosted Windows/Linux servers plus Azure cloud services.',
     ],
   },
@@ -91,7 +95,7 @@ export const experience = [
     points: [
       'Configured Jenkins CI/CD pipelines with automated QA via Cypress and built SQL-based service-health dashboards.',
       'Deployed multi-container apps on AKS using Helm across dev/staging/production.',
-      'Improved Git practices, reducing merge conflicts by 30%, and mentored teammates on DevOps workflows.',
+      'Introduced a branching and review convention that cut repeat merge conflicts, and mentored teammates on DevOps workflows.',
     ],
   },
 ]
@@ -101,7 +105,7 @@ const curatedProjects = [
     slug: 'local-rag-assistant',
     name: 'Local RAG Document Assistant',
     icon: 'Search',
-    tagline: 'Ask questions about your own documents — fully offline.',
+    tagline: 'Ask questions about your own documents, fully offline.',
     highlight: 'Private · cited answers',
     problem:
       'Most RAG demos depend on a hosted API. That is a non-starter when documents are private (policies, contracts, internal wikis).',
@@ -111,7 +115,7 @@ const curatedProjects = [
       'Retrieved passages are passed to a local LLM that answers only from that context and cites its sources.',
     ],
     stack: ['Python', 'Ollama', 'ChromaDB', 'LangChain', 'Gradio'],
-    result: 'A private, citeable document Q&A app that runs entirely on your own hardware — no API keys, no data leaving the machine.',
+    result: 'A private, citeable document Q&A app that runs entirely on your own hardware. No API keys, no data leaving the machine.',
     repo: 'https://github.com/siddiqitaha/local-rag-assistant',
   },
   {
@@ -121,7 +125,7 @@ const curatedProjects = [
     tagline: 'Turn a messy, trial-and-error build into a validated runbook.',
     highlight: 'Validated on a clean env',
     problem:
-      '"It works on my machine" — but the steps live in shell history and your head. Six months later nobody can reproduce it.',
+      '"It works on my machine", but the steps live in shell history and your head. Six months later nobody can reproduce it.',
     build: [
       'Captures the commands, outputs, and edits made during a build.',
       'Distills the minimal golden path, stripping dead ends and noise.',
@@ -163,7 +167,7 @@ const curatedProjects = [
       'Automated volume backups with Telegram alerting, so recovery is a tested procedure.',
     ],
     stack: ['Docker Compose', 'Caddy', 'Authelia', 'LLDAP'],
-    result: 'A hardened, self-hosted replacement for several commercial SaaS tools — run and secured by one person.',
+    result: 'A hardened, self-hosted replacement for several commercial SaaS tools, run and secured by one person.',
     repo: 'https://github.com/siddiqitaha/self-hosted-private-cloud',
   },
   {
@@ -176,7 +180,7 @@ const curatedProjects = [
       'Cloud environments drift and become un-reproducible when built by hand; teams need consistent, auditable infrastructure.',
     build: [
       'Reusable Terraform modules: VNet + NSG, AKS (with monitoring), Container Registry, Key Vault.',
-      'Clean dev/prod separation — same code, per-environment tfvars and remote state.',
+      'Clean dev/prod separation: same code, per-environment tfvars and remote state.',
       'Least privilege: scoped AcrPull to the cluster identity, RBAC-authorized Key Vault.',
       'CI runs fmt + validate, then a plan for each environment on every PR.',
     ],
@@ -214,6 +218,41 @@ const fromPinned = (pinned || []).map((r) => ({
 
 // Hand-authored case studies (team projects), linked to their write-ups. Shown ahead of repos.
 const caseStudies = [
+  {
+    slug: 'mcp-attack-lab',
+    name: 'MCP Attack Lab',
+    icon: 'ShieldAlert',
+    tagline: 'Five MCP servers, each broken on purpose in a different way.',
+    highlight: 'What a scan misses',
+    problem:
+      'An AI agent picks which tool to call by reading the tool\'s description, which is free text written by whoever made the tool. That trust is the attack surface, and most people have not seen how far it goes.',
+    build: [
+      'Five small MCP servers: tool poisoning, indirect prompt injection, rug pull, data exfiltration, privilege abuse. Five of the ten weaknesses in the OWASP MCP Top 10.',
+      'A description scan reads what a tool says it does, so it catches tool poisoning and the rug pull.',
+      'The other three have clean descriptions. Only watching what the tool actually does at runtime finds them.',
+      'A probe script runs the full MCP handshake against any server and prints a plain verdict.',
+    ],
+    stack: ['Python', 'MCP SDK', 'OWASP MCP Top 10'],
+    result: 'A place to point a scanner or a runtime guardrail and find out which weaknesses it can catch and which it cannot.',
+    repo: 'https://github.com/siddiqitaha/mcp-attack-lab',
+  },
+  {
+    slug: 'ai-body',
+    name: 'The AI Body',
+    icon: 'Boxes',
+    tagline: 'A local AI agent built as five parts you can swap out.',
+    highlight: 'Stops rather than continues',
+    problem:
+      'Trying a new model or a new tool usually means trusting it with everything the agent can reach. That makes experimenting expensive and slow.',
+    build: [
+      'Five parts behind one core that makes the decisions, each replaceable on its own.',
+      'If a part fails or is not trusted, the system stops instead of carrying on.',
+      'A new component can be run and measured without being trusted first.',
+    ],
+    stack: ['Python', 'Docker'],
+    result: 'A foundation where an untrusted component can be tried safely, so new tools get measured instead of argued about.',
+    repo: 'https://github.com/siddiqitaha/ai-body',
+  },
   {
     slug: 'galileo-governed-openclaw',
     name: 'Galileo-Governed OpenClaw',
@@ -255,7 +294,7 @@ const repoProjects = fromPinned.length ? fromPinned : curatedProjects
 export const projects = [...caseStudies, ...repoProjects]
 
 export const certifications = [
-  { name: 'AZ-303 · Azure Architect Technologies', issuer: 'Microsoft', year: '2021', logo: 'azure' },
+  { name: 'Exam AZ-303 · Azure Architect Technologies', issuer: 'Microsoft', year: '2021', logo: 'azure' },
   { name: 'KCNA · Kubernetes & Cloud Native Associate', issuer: 'Linux Foundation', year: '2023', logo: 'kubernetes' },
   { name: 'AZ-900 · Azure Fundamentals', issuer: 'Microsoft', year: '2020', logo: 'azure' },
   { name: 'Artificial Intelligence & Machine Learning', issuer: 'Samsung Innovation Campus', year: '2023-2024', logo: 'samsung', note: 'Capstone project: 1st place' },
