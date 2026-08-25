@@ -39,8 +39,8 @@ export function HeroSplit({ profile, certBadges }) {
           I build secure, self-hosted<br /><span className="text-accent">cloud &amp; AI systems.</span>
         </h1>
         <p className="mt-5 max-w-lg text-lg leading-relaxed text-ink-soft">
-          Cloud &amp; Systems Engineer with 5+ years across Azure and AWS, working in IaC, Kubernetes, and
-          production RAG pipelines. Based in {profile.location}.
+          Cloud &amp; Systems Engineer with 5 years on Azure, working in infrastructure as code, Kubernetes,
+          RAG pipelines, and the security layer in front of AI agents. Based in {profile.location}.
         </p>
         <div className="mt-6"><Badges certBadges={certBadges} /></div>
         <div className="mt-7 flex flex-wrap items-center gap-5">
@@ -63,7 +63,7 @@ export function HeroCentered({ profile, certBadges }) {
         I build secure, self-hosted <span className="text-accent">cloud &amp; AI systems.</span>
       </h1>
       <p className="mt-5 max-w-lg text-lg leading-relaxed text-ink-soft">
-        Cloud &amp; Systems Engineer working across Azure and AWS, IaC, Kubernetes, and production RAG. Based in {profile.location}.
+        Cloud &amp; Systems Engineer working in Azure, infrastructure as code, Kubernetes, RAG, and AI agent security. Based in {profile.location}.
       </p>
       <div className="mt-6 flex justify-center"><Badges certBadges={certBadges} /></div>
       <div className="mt-7 flex flex-wrap items-center justify-center gap-5">

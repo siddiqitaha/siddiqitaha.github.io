@@ -33,20 +33,16 @@ export const principles = [
 ]
 
 export const skills = [
-  { group: 'Cloud', items: ['Microsoft Azure (primary)', 'AWS'] },
-  { group: 'AI / MLOps', items: ['RAG pipelines', 'Multilingual RAG', 'Agentic RAG', 'Document extraction (OCR)', 'Vector similarity search (VSS)', 'Embeddings & rerankers', 'Grounding & verification', 'Retrieval evaluation', 'LLM deployment', 'vLLM', 'Ollama', 'GPT-OSS', 'Qwen3', 'LangChain', 'Prompt engineering', 'Azure ML'] },
-  { group: 'Fine-Tuning', items: ['LoRA', 'QLoRA', 'PEFT', 'NVIDIA NeMo', 'Adapter evaluation'] },
-  { group: 'AI Security & Governance', items: ['Agentic AI security', 'OWASP MCP Top 10', 'Cisco AI Defense', 'DefenseClaw', 'Agent Control', 'Galileo', 'Guardrails', 'Prompt-injection defense', 'Data-exfiltration prevention', 'Human-in-the-loop approval'] },
-  { group: 'MCP', items: ['MCP servers & clients', 'Tool-call governance', 'Vulnerable MCP server labs'] },
+  { group: 'Cloud & Networking', items: ['Microsoft Azure (primary)', 'Azure landing zones', 'Hub-and-spoke VNets', 'NSGs', 'Azure Firewall', 'Bastion', 'Private Endpoints', 'Managed Identity', 'AWS'] },
   { group: 'Infrastructure as Code', items: ['Terraform', 'ARM templates', 'Ansible'] },
   { group: 'Containers & Orchestration', items: ['Docker', 'Docker Compose', 'Kubernetes (AKS)', 'Helm'] },
   { group: 'CI/CD', items: ['Azure DevOps', 'GitHub Actions', 'Jenkins'] },
-  { group: 'Security & IAM', items: ['SSO / SAML', 'Microsoft Entra ID', 'Azure Key Vault', 'RBAC', 'Authelia', 'LLDAP', 'UFW', 'Fail2ban'] },
-  { group: 'Linux & Self-Hosting', items: ['Linux', 'Caddy', 'Cloudflare', 'Tailscale', 'Nextcloud', 'Automated backups'] },
-  { group: 'Observability', items: ['OpenTelemetry', 'Grafana', 'Prometheus', 'Loki', 'Tempo', 'Splunk', 'Azure Monitor', 'Application Insights', 'Anomaly detection'] },
-  { group: 'Databases & Storage', items: ['Qdrant', 'ChromaDB', 'FalkorDB', 'SQLite', 'MinIO', 'Knowledge graphs'] },
-  { group: 'Web / Frontend', items: ['React', 'Vite', 'Tailwind CSS', 'JavaScript'] },
-  { group: 'Languages', items: ['Python (Flask)', 'Bash', 'PowerShell', 'HCL', 'SQL'] },
+  { group: 'Security & IAM', items: ['SSO / SAML', 'Microsoft Entra ID', 'Azure Key Vault', 'RBAC', 'Conditional Access', 'Authelia', 'LLDAP', 'UFW', 'Fail2ban'] },
+  { group: 'Linux & Self-Hosting', items: ['Linux', 'Caddy', 'Cloudflare', 'Tailscale', 'Automated backups'] },
+  { group: 'Observability', items: ['OpenTelemetry', 'Grafana', 'Prometheus', 'Loki', 'Splunk', 'Azure Monitor', 'Log Analytics'] },
+  { group: 'AI / RAG', items: ['RAG pipelines', 'Multilingual RAG', 'Vector search', 'Embeddings & rerankers', 'Qdrant', 'ChromaDB', 'LLM deployment (vLLM, Ollama)', 'LangChain', 'LoRA / QLoRA fine-tuning'] },
+  { group: 'AI Agent Security', items: ['Agentic AI security', 'OWASP MCP Top 10', 'Cisco AI Defense', 'DefenseClaw', 'Agent Control', 'Galileo', 'Prompt-injection defense', 'MCP'] },
+  { group: 'Languages', items: ['Python (Flask)', 'PowerShell', 'Bash', 'HCL', 'SQL'] },
 ]
 
 export const experience = [
